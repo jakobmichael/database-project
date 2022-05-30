@@ -10,10 +10,4 @@ function connectToMSQL($server, $user, $passwd, $database)
     }
 }
 
-function createDataase($conn, $db)
-{
 
-    $sql = "CREATE DATABASE IF NOT EXISTS " . $db;
-    if ($conn->query($sql) === TRUE) {
-    }
-}
