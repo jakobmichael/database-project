@@ -12,15 +12,7 @@ $databaseName = "library";
 
 $dbConnection = connectToMSQL($servername, $username, $password, $databaseName);
 
-$result = insertIntoTable($dbConnection, "cities", ["plz", "name", "country"], ["77836", "Stollhofen", "DE"]);
 
-print($result);
-
-if($result == 1) {
-    print("success");
-} else {
-    print("fail");
-}
 
 mysqli_close($dbConnection);
 ?>
@@ -29,9 +21,42 @@ mysqli_close($dbConnection);
 <head>
     <meta charset="utf-8" />
     <title>Büchereisystem</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
-<body>
-    <h1>TEST</h1>
+<body id="page-container">
+    <div id="ausleihen-container" class="flex category-container" >
+        <h2 class="header">Ausleihen</h2>
+        <input class="searchbar" type="text">
+        <h3 class="header">Filter</h3>
+        <select>
+            <option>Filter</option>
+            <option>super toll</option>
+        </select>
 
+        <select>
+            <option>Filter</option>
+            <option>super toll</option>
+        </select>
+
+        <select>
+            <option>Filter</option>
+            <option>super toll</option>
+        </select>
+
+        <select>
+            <option>Filter</option>
+            <option>super toll</option>
+        </select>
+
+        <div>
+
+        </div>
+    </div>
+    <div id="zurueckgeben-container" class="flex category-container">
+        <h2 class="header">Zurueckgeben</h2>
+        <input class="searchbar" type="text">
+
+    </div>
 </body>
