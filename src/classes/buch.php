@@ -15,6 +15,8 @@ class Buch
   private $Regalnummer;
   private $Regalfach;
   private $Verlag;
+  private $Autoren;
+  private $Genres;
 
 
   function __construct($bookValuesAsArray) 
@@ -26,8 +28,7 @@ class Buch
     $this->Erschienen = $bookValuesAsArray["Erschienen"];
     $this->Beschreibung = $bookValuesAsArray["Beschreibung"];
     $this->LagerplatzID = $bookValuesAsArray["LagerplatzID"];
-    $this->VerlagID = $bookValuesAsArray["VerlagID"];
-      
+    $this->VerlagID = $bookValuesAsArray["VerlagID"];      
   }
 
   /**
@@ -242,6 +243,42 @@ class Buch
   public function setVerlag($Verlag): self
   {
     $this->Verlag = $Verlag;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of Autoren
+   */
+  public function getAutoren()
+  {
+    return $this->Autoren;
+  }
+
+  /**
+   * Set the value of Autoren
+   */
+  public function setAutoren($Autoren): self
+  {
+    $this->Autoren = $Autoren;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of Genres
+   */
+  public function getGenres()
+  {
+    return $this->Genres;
+  }
+
+  /**
+   * Set the value of Genres
+   */
+  public function setGenres($Genres): self
+  {
+    $this->Genres = $Genres;
 
     return $this;
   }

@@ -2,7 +2,7 @@
 $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
 include($rootPath . "/includes/databaseInit.php");
-include($rootPath . "/includes/tableFunctions.php");
+include($rootPath . "/includes/tableFunctionsForBooks.php");
 include($rootPath . "/classes/buch.php");
 
 $servername = "localhost";
@@ -12,7 +12,7 @@ $databaseName = "bibliothek";
 
 $dbConnection = connectToMSQL($servername, $username, $password, $databaseName);
 
-$result = selectAllValuesFromTableWithoutConstraints($dbConnection, "buch");
+$result = getAllRentableBooks($dbConnection, "buch");
 $allBooks = array();
 
 
@@ -36,10 +36,26 @@ if ($result) {
             $book->setVerlag($verlag["Name"]);
         }
 
+        $autorenResult = getAllAuthorsForBook($dbConnection, $book);
+        $autorenListe = array();
+
+        while($autoren = mysqli_fetch_array($autorenResult)) {
+            array_push($autorenListe,$autoren["Name"]);
+        }
+        $book->setAutoren($autorenListe);
+
+        $genreResult = getAllGenresForBook($dbConnection, $book);
+        $genreListe = array();
+
+        while($genres = mysqli_fetch_array($genreResult)) {
+            array_push($genreListe,$genres["Name"]);
+        }
+        $book->setGenres($genreListe);
+
         array_push($allBooks, $book);
     }
 } else {
-    echo "SQL-Fehler!<br>SQL meldet: " . mysqli_error($verbindung);
+    echo "SQL-Fehler!<br>SQL meldet: " . mysqli_error($dbConnection);
 }
 
 
