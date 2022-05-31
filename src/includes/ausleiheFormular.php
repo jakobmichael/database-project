@@ -19,20 +19,20 @@ $constraints = " WHERE b.BuchID not in (select BuchID FROM ausleihe) ";
 
 
 
-if ($_POST["author"] !== $DEFAULT) {
+if (isset($_POST["author"]) && $_POST["author"] !== $DEFAULT) {
 	$autor = $_POST["author"];
 	$baseSql .= ", autorbuchzuordnung abz ";
 	$constraints .= " AND abz.AutorID = $autor AND abz.BuchID = b.BuchID ";
 }
 
-if ($_POST["genre"] !== $DEFAULT) {
+if (isset($_POST["genre"]) && $_POST["genre"] !== $DEFAULT) {
 	$genreId = $_POST["genre"];
 
 	$baseSql .= ", buchgenrezuordnung bgz";
 	$constraints .= "AND bgz.GenreID = $genreId AND bgz.BuchID = b.BuchID";
 }
 
-if ($_POST["verlag"] !== $DEFAULT) {
+if (isset($_POST["verlag"]) && $_POST["verlag"] !== $DEFAULT) {
 	$verlagId = $_POST["verlag"];
 
 	$constraints .= "AND b.VerlagID = $verlagId";
