@@ -30,8 +30,9 @@ foreach ($allBooks as $book) : ?>
 
 
         <div class="description">
-            <h4>Beschreibung <img id="arrowDown" src="../assets/images/down-arrow.png" alt="arrow down"/><h4>
-            <p><?= $book->getBeschreibung() ?></p>
+            <h4>Beschreibung <img id="arrowDown" src="../assets/images/down-arrow.png" alt="arrow down" />
+                <h4>
+                    <p><?= $book->getBeschreibung() ?></p>
         </div>
         <br>
         <hr>
@@ -52,28 +53,28 @@ foreach ($allBooks as $book) : ?>
         </table>
         <br>
         <hr>
-        <div class="footer">
 
-            <table class="lagerPlatzTable">
-                <thead>
-                    <tr><th class="lagerPlatzTableHeader" colspan="3">Lagerort in der Bibliothek</th></tr>
-                    <tr>
-                        <th class="lagerPlatzTableHeaderItem">Stockwerk</th>
-                        <th class="lagerPlatzTableHeaderItem">Regal</th>
-                        <th class="lagerPlatzTableHeaderItem">Fach</th>
-                    </tr>
-                    <br>
-                    <tr>
-                        <td class="tableItem"><?= $book->getStockwerksnummer() ?></td>
-                        <td class="tableItem"><?= $book->getRegalnummer() ?></td>
-                        <td class="tableItem"><?= $book->getRegalfach() ?></td>
-                    </tr>
-                </thead>
-            </table>
-            <form method="post">
-                <button type="submit" name="ausleihen" value=<?=$book->getBuchID()?>>Ausleihen</button>
-            </form>
-        </div>
+
+        <table class="lagerPlatzTable">
+            <thead>
+                <tr>
+                    <th class="lagerPlatzTableHeader" colspan="3">Lagerort in der Bibliothek</th>
+                </tr>
+                <tr>
+                    <th class="lagerPlatzTableHeaderItem">Stockwerk</th>
+                    <th class="lagerPlatzTableHeaderItem">Regal</th>
+                    <th class="lagerPlatzTableHeaderItem">Fach</th>
+                </tr>
+                <br>
+                <tr>
+                    <td class="tableItem"><?= $book->getStockwerksnummer() ?></td>
+                    <td class="tableItem"><?= $book->getRegalnummer() ?></td>
+                    <td class="tableItem"><?= $book->getRegalfach() ?></td>
+                </tr>
+            </thead>
+        </table>
+
+        <?php include($rootPath . "/includes/ausleihe.php"); ?>
     </div>
 
 

@@ -20,7 +20,7 @@ $dbConnection = connectToMSQL($servername, $username, $password, $databaseName);
 $result = getAllRentableBooks($dbConnection, "buch");
 $allBooks = array();
 
-include($rootPath . "/includes/ausleiheFormular.php");
+include($rootPath . "/includes/serverLogik.php");
 
 
 if ($result) {
@@ -71,13 +71,14 @@ if ($result) {
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/rentableBooks.css">
+    <link rel="stylesheet" href="css/ausleihFooter.css">
 </head>
 
 <body id="page-container">
     <div id="ausleihen-container" class="flex category-container">
     <h2 class="header">Ausleihen</h2>
     <?php
-            include($rootPath . "/includes/ausleihFilter.php");
+            include($rootPath . "/includes/suchFilter.php");
             ?>
         
         <div>
