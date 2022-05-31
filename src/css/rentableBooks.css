@@ -1,6 +1,28 @@
 .bookContainer {
-  border: 1px solid black;
-  margin: 5px;
+  outline: none;
+  border-radius: 10px;
+  margin: 10%;
+  padding: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.description p {
+  margin: 5px 0 0 0;
+  display: none;
+}
+
+.bookContainer:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+  box-shadow: rgba(10, 68, 255, 0.2) 0px 7px 29px 0px;
+}
+
+
+.bookContainer:hover .description p {
+  display: block;
+  font-style: italic;
+  color: rgba(128, 128, 128, 0.903);
+  visibility: visible;
 }
 
 #description {
@@ -8,15 +30,54 @@
   color: rgba(128, 128, 128, 0.903);
 }
 
-.lagerPlatzTableItem {
+.tableItem {
   padding: 5px;
 }
 
 .lagerPlatzTableHeader {
   font-weight: 600;
+  row-gap: 5px;
+  padding: 5px;
+}
+.lagerPlatzTableHeaderItem {
   padding: 5px;
 }
 
 .lagerPlatzTable {
-  text-align: right;
+  text-align: left;
+}
+
+#bookInformationTable {
+  width: 100%;
+}
+
+#bookInformationTable th {
+  font-weight: 600;
+  padding: 5px;
+  text-align: left;
+}
+
+#arrowDown {
+  animation: alternate-reverse bounce 2s infinite;
+  vertical-align: middle;
+  width: 20px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: start;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(3px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(1px);
+  }
 }

@@ -91,3 +91,8 @@ function getAllGenresForBook($conn,$book) {
         return 0;
     }
 }
+
+
+function addBookToAusleihe($ausleihe) {
+   
+}

@@ -18,7 +18,7 @@ function getArrayValuesAsString($array)
 
 foreach ($allBooks as $book) : ?>
     <div class="bookContainer">
-        <h3><?= $book->getTitel() ?></h3>
+        <h2><?= $book->getTitel() ?></h2>
         <br>
         <hr>
 
@@ -28,32 +28,52 @@ foreach ($allBooks as $book) : ?>
         <p>Genre(s): <?= getArrayValuesAsString($book->getGenres()); ?></p>
         <br>
 
-        <p><?= $book->getVerlag(); ?></p><br>
-        <p id="description"><?= $book->getBeschreibung() ?></p>
+
+        <div class="description">
+            <h4>Beschreibung <img id="arrowDown" src="../assets/images/down-arrow.png" alt="arrow down"/><h4>
+            <p><?= $book->getBeschreibung() ?></p>
+        </div>
         <br>
-        <table>
-            <tr>
-                <td>ISBN: <?= $book->getISBN() ?></td>
-            </tr>
-            <tr>
-                <td>Seitenzahl: <?= $book->getSeitenzahl() ?></td>
-            </tr>
-        </table>
-        <table class="lagerPlatzTable">
+        <hr>
+        <table id="bookInformationTable">
             <thead>
                 <tr>
-                    <th class="lagerPlatzTableHeader">Stockwerk</th>
-                    <th class="lagerPlatzTableHeader">Regal</th>
-                    <th class="lagerPlatzTableHeader">Fach</th>
-                </tr>
-                <br>
-                <tr>
-                    <td class="lagerPlatzTableItem"><?= $book->getStockwerksnummer() ?></td>
-                    <td class="lagerPlatzTableItem"><?= $book->getRegalnummer() ?></td>
-                    <td class="lagerPlatzTableItem"><?= $book->getRegalfach() ?></td>
+                    <th>ISBN</th>
+                    <th>Seitenzahl</th>
+                    <th>Verlag</th>
                 </tr>
             </thead>
+            <tr>
+                <td class="tableItem"><?= $book->getISBN() ?></td>
+                <td class="tableItem"> <?= $book->getSeitenzahl() ?></td>
+                <td class="tableItem"> <?= $book->getVerlag(); ?></td>
+            </tr>
+
         </table>
+        <br>
+        <hr>
+        <div class="footer">
+
+            <table class="lagerPlatzTable">
+                <thead>
+                    <tr><th class="lagerPlatzTableHeader" colspan="3">Lagerort in der Bibliothek</th></tr>
+                    <tr>
+                        <th class="lagerPlatzTableHeaderItem">Stockwerk</th>
+                        <th class="lagerPlatzTableHeaderItem">Regal</th>
+                        <th class="lagerPlatzTableHeaderItem">Fach</th>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td class="tableItem"><?= $book->getStockwerksnummer() ?></td>
+                        <td class="tableItem"><?= $book->getRegalnummer() ?></td>
+                        <td class="tableItem"><?= $book->getRegalfach() ?></td>
+                    </tr>
+                </thead>
+            </table>
+            <form method="post">
+                <button type="submit" name="ausleihen" value=<?=$book->getBuchID()?>>Ausleihen</button>
+            </form>
+        </div>
     </div>
 
 
