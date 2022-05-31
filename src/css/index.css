@@ -9,6 +9,16 @@ h2{
 h3{
     font-size: 1.17em;
 }
+select{
+    width: 100px;
+    height: 20px;
+    border: 1px solid #999;
+    font-size: 13px;
+    color: #008000;
+    background-color: #eee;
+    border-radius: 5px;
+    box-shadow: 4px 4px #ccc;
+}
 
 .flex{
     display: flex;
@@ -21,7 +31,8 @@ h3{
 }
 .header {
     font-weight: bold;
-    margin: 2vh 0 2vh 0;
+    margin: 4vh 1vw 4vh 1vw;
+    text-align: center;
 }
 .searchbar{
     width: 70%;
@@ -39,7 +50,9 @@ h3{
     background-color: #57b4fb47;
 }
 
-
+.filter-form {
+    margin: 1vw;
+}
 
 /* Container */
 
