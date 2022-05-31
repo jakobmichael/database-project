@@ -17,9 +17,7 @@ $allBooks = array();
 
 
 if ($result) {
-    echo "<p>Die SQL-Anweisung war erfolgreich...</p>";
     $anzahl = mysqli_num_rows($result);
-    echo "<p>In der Tabelle befinden sich $anzahl Datensätze:</p>";
     while ($buch = mysqli_fetch_array($result)) {
         $book = new Buch($buch);
         $lagerplatzResult = getLagerplatzForBook($dbConnection, $book);
@@ -57,9 +55,6 @@ if ($result) {
 } else {
     echo "SQL-Fehler!<br>SQL meldet: " . mysqli_error($dbConnection);
 }
-
-
-mysqli_close($dbConnection);
 ?>
 
 
@@ -73,29 +68,35 @@ mysqli_close($dbConnection);
 
 <body id="page-container">
     <div id="ausleihen-container" class="flex category-container">
+    <form action="ausleiheFormular.php" method="post">
         <h2 class="header">Ausleihen</h2>
         <input class="searchbar" type="text">
         <h3 class="header">Filter</h3>
-        <select>
-            <option>Filter</option>
-            <option>super toll</option>
-        </select>
+         <select name="author">
+            <option value="default">Default</option>
+            <?php
+                $sql = "SELECT Name FROM Autor";
 
-        <select>
-            <option>Filter</option>
-            <option>super toll</option>
-        </select>
+                $result = mysqli_query($dbConnection, $sql);
 
-        <select>
-            <option>Filter</option>
-            <option>super toll</option>
-        </select>
+                if (mysqli_num_rows($result) > 0) {
+                  // output data of each row
+                  while($row = mysqli_fetch_assoc($result)) {
+                    echo "<option>". $row["Name"] . "</option>";
+                  }
+                } else {
+                  echo "0 results";
+                }
+            ?>
+            </select>
 
-        <select>
-            <option>Filter</option>
-            <option>super toll</option>
-        </select>
+                <select name="verlag">
+                    <option value="option1-filter2">Filter</option>
+                    <option value="option2-filter2">super toll</option>
+                </select>
 
+             <button type="submit">Suche...</button>
+         </form>
         <div>
             <?php
             include($rootPath . "/includes/rentableBooks.php");
@@ -109,4 +110,8 @@ mysqli_close($dbConnection);
         <input class="searchbar" type="text">
 
     </div>
+
+    <?php
+        mysqli_close($dbConnection);
+    ?>
 </body>
