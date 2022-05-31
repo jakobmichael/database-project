@@ -1,33 +1,52 @@
 <?php
 
 
-//---------------------------------------------
-// WARNING: this doesn't include sanitization
-// and validation
-//---------------------------------------------
-if (isset($_POST['ausleihe-suche'], $_POST['filter1'], $_POST['filter2'], $_POST['filter3'], $_POST['filter4'])) {
-	$ausleiheSuche = $_POST['ausleihe-suche'];
-	$filter1 = $_POST['filter1'];
-	$filter2 = $_POST['filter2'];
-	$filter3 = $_POST['filter3'];
-	$filter4 = $_POST['filter4'];
+$servername = "localhost";
+$username = "library_system";
+$password = "library";
+$databaseName = "bibliothek";
 
-	// show the $name and $email
-	echo "Gesucht wurde $ausleiheSuche.<br>";
-	echo "mit den Filtern: $filter1 , $filter2 , $filter3 , $filter4";
+$conn = connectToMSQL($servername, $username, $password, $databaseName);
 
-} elseif (isset($_POST["ausleiheVormerken"])) {
-	
+$DEFAULT = "-";
 
 
-	// if (!in_array($_POST["ausleiheVormerken"], $bookIdsToSaveForRental)) {
-	// 	echo("hinzugefügt");
-	// } else {
-	// 	echo("schon drin");
-	// }
-	// array_push($bookIdsToSaveForRental, $_POST["ausleiheVormerken"]);
-	
+$baseSql = "SELECT b.* FROM buch b ";
+$constraints = " WHERE b.BuchID not in (select BuchID FROM ausleihe) ";
 
-} else {
-	echo 'You need to fill all input field.';
+
+
+
+
+
+if ($_POST["author"] !== $DEFAULT) {
+	$autor = $_POST["author"];
+	$baseSql .= ", autorbuchzuordnung abz ";
+	$constraints .= " AND abz.AutorID = $autor AND abz.BuchID = b.BuchID ";
 }
+
+if ($_POST["genre"] !== $DEFAULT) {
+	$genreId = $_POST["genre"];
+
+	$baseSql .= ", buchgenrezuordnung bgz";
+	$constraints .= "AND bgz.GenreID = $genreId AND bgz.BuchID = b.BuchID";
+}
+
+if ($_POST["verlag"] !== $DEFAULT) {
+	$verlagId = $_POST["verlag"];
+
+	$constraints .= "AND b.VerlagID = $verlagId";
+}
+
+
+$sql = $baseSql . $constraints;
+
+
+try {
+	$result = mysqli_query($conn, $sql);
+	return $result;
+} catch (Throwable $th) {
+	return 0;
+}
+
+mysqli_close($conn);

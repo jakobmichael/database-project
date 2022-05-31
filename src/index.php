@@ -7,7 +7,6 @@ $rootPath = $_SERVER['DOCUMENT_ROOT'];
 include($rootPath . "/includes/databaseInit.php");
 include($rootPath . "/includes/tableFunctionsForBooks.php");
 include($rootPath . "/classes/buch.php");
-include($rootPath . "/includes/ausleiheFormular.php");
 
 
 
@@ -21,6 +20,7 @@ $dbConnection = connectToMSQL($servername, $username, $password, $databaseName);
 $result = getAllRentableBooks($dbConnection, "buch");
 $allBooks = array();
 
+include($rootPath . "/includes/ausleiheFormular.php");
 
 
 if ($result) {
@@ -76,64 +76,10 @@ if ($result) {
 <body id="page-container">
     <div id="ausleihen-container" class="flex category-container">
     <h2 class="header">Ausleihen</h2>
-    <form action="ausleiheFormular.php" method="post" class="filter-form">
-        <h3 class="header filter-header" style="display: inline">Filter: </h3>
-         <select name="author">
-            <option value="default">Default</option>
-            <?php
-                $sql = "SELECT Name, AutorID FROM Autor";
-
-                $result = mysqli_query($dbConnection, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-               
-                  while($row = mysqli_fetch_assoc($result)) {
-                    echo "<option value= {$row["AutorID"]}>". $row["Name"] . "</option>";
-                  }
-                } else {
-                    echo "0 results";
-                }
-                ?>
-            </select>
-
-            <select name="genre" >
-                <option value="default">Default</option>
-                <?php
-                    $sql = "SELECT Name, GenreID FROM genre";
-
-                    $result = mysqli_query($dbConnection, $sql);
-
-                    if (mysqli_num_rows($result) > 0) {
-                      // output data of each row
-                      while($row = mysqli_fetch_assoc($result)) {
-                        echo "<option value= {$row["GenreID"]}>". $row["Name"] . "</option>";
-                      }
-                    } else {
-                      echo "0 results";
-                    }
-                ?>
-            </select>
-
-              <select name="verlag">
-                <option value="default">Default</option>
-                <?php
-                    $sql = "SELECT Name, VerlagID FROM verlag";
-
-                    $result = mysqli_query($dbConnection, $sql);
-
-                    if (mysqli_num_rows($result) > 0) {
-                      // output data of each row
-                      while($row = mysqli_fetch_assoc($result)) {
-                        echo "<option value= {$row["VerlagID"]}>". $row["Name"] . "</option>";
-                      }
-                    } else {
-                      echo "0 results";
-                    }
-                ?>
-              </select>
-
-            <button type="submit">Suche...</button>
-        </form>
+    <?php
+            include($rootPath . "/includes/ausleihFilter.php");
+            ?>
+        
         <div>
             <?php
             include($rootPath . "/includes/rentableBooks.php");

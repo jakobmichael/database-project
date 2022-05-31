@@ -34,21 +34,7 @@ select{
     margin: 4vh 1vw 4vh 1vw;
     text-align: center;
 }
-.searchbar{
-    width: 70%;
-    height: 3%;
-    margin: 3%;
-    border: 1px solid black;
-    outline: none;
-    border-radius: 2px;
-   
-}
 
-.searchbar:focus, .searchbar:active {
-    outline: none;
-    border: 1px solid #57b4fb !important;
-    background-color: #57b4fb47;
-}
 
 .filter-form {
     margin: 1vw;
@@ -62,7 +48,7 @@ select{
 }
 .category-container{
     padding: 3vw;
-    width: 50vw;
+    width: 100%;
     flex-direction: column;
     align-items: center;
 }
