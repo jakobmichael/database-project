@@ -30,33 +30,37 @@ foreach ($allBooks as $book) : ?>
 
 
         <div class="description">
-            <h4>Beschreibung <img id="arrowDown" src="../assets/images/down-arrow.png" alt="arrow down"/><h4>
-            <p><?= $book->getBeschreibung() ?></p>
+            <h4>Beschreibung <img id="arrowDown" src="../assets/images/down-arrow.png" alt="arrow down" />
+                <h4>
+                    <p><?= $book->getBeschreibung() ?></p>
         </div>
         <br>
         <hr>
-        <table id="bookInformationTable">
-            <thead>
-                <tr>
-                    <th>ISBN</th>
-                    <th>Seitenzahl</th>
-                    <th>Verlag</th>
-                </tr>
-            </thead>
-            <tr>
-                <td class="tableItem"><?= $book->getISBN() ?></td>
-                <td class="tableItem"> <?= $book->getSeitenzahl() ?></td>
-                <td class="tableItem"> <?= $book->getVerlag(); ?></td>
-            </tr>
+        <div class="tableContainer">
 
-        </table>
-        <br>
-        <hr>
-        <div class="footer">
+            <table id="bookInformationTable">
+                <thead>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Seitenzahl</th>
+                        <th>Verlag</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td class="tableItem"><?= $book->getISBN() ?></td>
+                    <td class="tableItem"> <?= $book->getSeitenzahl() ?></td>
+                    <td class="tableItem"> <?= $book->getVerlag(); ?></td>
+                </tr>
+
+            </table>
+
+
 
             <table class="lagerPlatzTable">
                 <thead>
-                    <tr><th class="lagerPlatzTableHeader" colspan="3">Lagerort in der Bibliothek</th></tr>
+                    <tr>
+                        <th class="lagerPlatzTableHeader" colspan="3">Lagerort in der Bibliothek</th>
+                    </tr>
                     <tr>
                         <th class="lagerPlatzTableHeaderItem">Stockwerk</th>
                         <th class="lagerPlatzTableHeaderItem">Regal</th>
@@ -70,10 +74,10 @@ foreach ($allBooks as $book) : ?>
                     </tr>
                 </thead>
             </table>
-            <form method="post">
-                <button type="submit" name="ausleihen" value=<?=$book->getBuchID()?>>Ausleihen</button>
-            </form>
         </div>
+        <hr>
+
+        <?php include($rootPath . "/includes/ausleihe.php"); ?>
     </div>
 
 
