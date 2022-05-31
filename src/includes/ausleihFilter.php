@@ -60,7 +60,7 @@
             }
         ?>
       </select>
-
+    <button type="reset">Zurücksetzen</button>
     <button type="submit">Suche...</button>
 </form>
 
