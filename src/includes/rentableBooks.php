@@ -36,43 +36,46 @@ foreach ($allBooks as $book) : ?>
         </div>
         <br>
         <hr>
-        <table id="bookInformationTable">
-            <thead>
-                <tr>
-                    <th>ISBN</th>
-                    <th>Seitenzahl</th>
-                    <th>Verlag</th>
-                </tr>
-            </thead>
-            <tr>
-                <td class="tableItem"><?= $book->getISBN() ?></td>
-                <td class="tableItem"> <?= $book->getSeitenzahl() ?></td>
-                <td class="tableItem"> <?= $book->getVerlag(); ?></td>
-            </tr>
+        <div class="tableContainer">
 
-        </table>
-        <br>
+            <table id="bookInformationTable">
+                <thead>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Seitenzahl</th>
+                        <th>Verlag</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td class="tableItem"><?= $book->getISBN() ?></td>
+                    <td class="tableItem"> <?= $book->getSeitenzahl() ?></td>
+                    <td class="tableItem"> <?= $book->getVerlag(); ?></td>
+                </tr>
+
+            </table>
+
+
+
+            <table class="lagerPlatzTable">
+                <thead>
+                    <tr>
+                        <th class="lagerPlatzTableHeader" colspan="3">Lagerort in der Bibliothek</th>
+                    </tr>
+                    <tr>
+                        <th class="lagerPlatzTableHeaderItem">Stockwerk</th>
+                        <th class="lagerPlatzTableHeaderItem">Regal</th>
+                        <th class="lagerPlatzTableHeaderItem">Fach</th>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td class="tableItem"><?= $book->getStockwerksnummer() ?></td>
+                        <td class="tableItem"><?= $book->getRegalnummer() ?></td>
+                        <td class="tableItem"><?= $book->getRegalfach() ?></td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
         <hr>
-
-
-        <table class="lagerPlatzTable">
-            <thead>
-                <tr>
-                    <th class="lagerPlatzTableHeader" colspan="3">Lagerort in der Bibliothek</th>
-                </tr>
-                <tr>
-                    <th class="lagerPlatzTableHeaderItem">Stockwerk</th>
-                    <th class="lagerPlatzTableHeaderItem">Regal</th>
-                    <th class="lagerPlatzTableHeaderItem">Fach</th>
-                </tr>
-                <br>
-                <tr>
-                    <td class="tableItem"><?= $book->getStockwerksnummer() ?></td>
-                    <td class="tableItem"><?= $book->getRegalnummer() ?></td>
-                    <td class="tableItem"><?= $book->getRegalfach() ?></td>
-                </tr>
-            </thead>
-        </table>
 
         <?php include($rootPath . "/includes/ausleihe.php"); ?>
     </div>

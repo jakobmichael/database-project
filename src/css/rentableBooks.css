@@ -46,9 +46,7 @@
   text-align: left;
 }
 
-#bookInformationTable {
-  width: 100%;
-}
+
 
 #bookInformationTable th {
   font-weight: 600;
@@ -67,6 +65,17 @@
   flex-direction: row;
   justify-content: space-between;
   align-self: start;
+}
+
+.tableContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tableContainer table {
+  width: 48%;
+  /* border: 0.5px solid rgba(0, 0, 0, 0.1); */
 }
 
 
