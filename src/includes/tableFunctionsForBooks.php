@@ -37,6 +37,10 @@ function getAllRentableBooks($conn)
     }
 }
 
+function getAllReturnableBooksForKunde($conn, $kunde)
+{
+}
+
 function getLagerplatzForBook($conn, $book)
 {
     $buchLagerplatzID = $book->getLagerplatzID();
@@ -79,7 +83,8 @@ function getAllAuthorsForBook($conn, $book)
 }
 
 
-function getAllGenresForBook($conn,$book) {
+function getAllGenresForBook($conn, $book)
+{
     $buchId = $book->getBuchID();
 
     $sql = "SELECT g.Name FROM buchgenrezuordnung bgz, genre g WHERE bgz.BuchID = $buchId AND g.GenreID = bgz.GenreID";
@@ -93,6 +98,6 @@ function getAllGenresForBook($conn,$book) {
 }
 
 
-function addBookToAusleihe($ausleihe) {
-   
+function addBookToAusleihe($ausleihe)
+{
 }
