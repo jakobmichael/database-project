@@ -64,7 +64,7 @@ if ($result) {
 }
 ?>
 
-
+<html>
 <head>
     <meta charset="utf-8" />
     <title>Büchereisystem</title>
@@ -76,11 +76,11 @@ if ($result) {
 
 <body id="page-container">
     <div id="ausleihen-container" class="flex category-container">
-    <h2 class="header">Ausleihen</h2>
-    <?php
-            include($rootPath . "/includes/suchFilter.php");
-            ?>
-        
+        <h2 class="header">Ausleihen</h2>
+        <?php
+        include($rootPath . "/includes/suchFilter.php");
+        ?>
+
         <div>
             <?php
             include($rootPath . "/includes/rentableBooks.php");
@@ -95,3 +95,5 @@ if ($result) {
     mysqli_close($dbConnection);
     ?>
 </body>
+
+</html>
