@@ -5,7 +5,7 @@ $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
 
 include($rootPath . "/includes/databaseInit.php");
-include($rootPath . "/includes/tableFunctionsForBooks.php");
+include($rootPath . "/includes/helperFunctions.php");
 include($rootPath . "/classes/buch.php");
 
 
@@ -17,53 +17,36 @@ $databaseName = "bibliothek";
 
 $dbConnection = connectToMSQL($servername, $username, $password, $databaseName);
 
-$result = getAllRentableBooks($dbConnection, "buch");
-$allBooks = array();
+$allRentableBookResults = getAllRentableBooks($dbConnection);
+$allRentableBooks = array();
 
+$allReturnableBooksResult = null;
 $allReturnableBooks = array();
 
-include($rootPath . "/includes/serverLogik.php");
+
+include($rootPath . "/includes/requestHandler.php");
 
 
-if ($result) {
-    $anzahl = mysqli_num_rows($result);
-    while ($buch = mysqli_fetch_array($result)) {
+if ($allRentableBookResults) {
+    $anzahl = mysqli_num_rows($allRentableBookResults);
+    while ($buch = mysqli_fetch_array($allRentableBookResults)) {
         $book = new Buch($buch);
-        $lagerplatzResult = getLagerplatzForBook($dbConnection, $book);
-        $verlagResult = getVerlagForBook($dbConnection, $book);
+        instantiateBookObjectWithAllAttributes($dbConnection,$book,true);
 
-        while ($lagerplatz = mysqli_fetch_array($lagerplatzResult)) {
-
-            $book->setStockwerksnummer($lagerplatz["Stockwerksnummer"]);
-            $book->setRegalnummer($lagerplatz["Regalnummer"]);
-            $book->setRegalfach($lagerplatz["Regalfach"]);
-        }
-
-        while ($verlag = mysqli_fetch_array($verlagResult)) {
-            $book->setVerlag($verlag["Name"]);
-        }
-
-        $autorenResult = getAllAuthorsForBook($dbConnection, $book);
-        $autorenListe = array();
-
-        while ($autoren = mysqli_fetch_array($autorenResult)) {
-            array_push($autorenListe, $autoren["Name"]);
-        }
-        $book->setAutoren($autorenListe);
-
-        $genreResult = getAllGenresForBook($dbConnection, $book);
-        $genreListe = array();
-
-        while ($genres = mysqli_fetch_array($genreResult)) {
-            array_push($genreListe, $genres["Name"]);
-        }
-        $book->setGenres($genreListe);
-
-        array_push($allBooks, $book);
+        array_push($allRentableBooks, $book);
     }
-} else {
-    echo "SQL-Fehler!<br>SQL meldet: " . mysqli_error($dbConnection);
-}
+} 
+
+
+if ($allReturnableBooksResult !==null) {
+    $anzahl = mysqli_num_rows($allReturnableBooksResult);
+    while ($buch = mysqli_fetch_array($allReturnableBooksResult)) {
+        $book = new Buch($buch);
+        instantiateBookObjectWithAllAttributes($dbConnection,$book,false);
+
+        array_push($allReturnableBooks, $book);
+    }
+} 
 ?>
 
 <html>

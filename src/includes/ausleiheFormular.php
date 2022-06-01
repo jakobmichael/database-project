@@ -1,52 +1,24 @@
 <?php
 
+?>
+<form method="post">
+    <input type="date" name="rueckgabe">
+    <select class='selectMenu'  name="kunde">
 
-$servername = "localhost";
-$username = "library_system";
-$password = "library";
-$databaseName = "bibliothek";
+        <option value="-">-</option>
 
-$conn = connectToMSQL($servername, $username, $password, $databaseName);
+        <?php
+        $sql = "SELECT Nachname, Vorname, KundenID FROM kunde";
 
-$DEFAULT = "-";
+        $result = mysqli_query($dbConnection, $sql);
 
+        if (mysqli_num_rows($result) > 0) {
 
-$baseSql = "SELECT b.* FROM buch b ";
-$constraints = " WHERE b.BuchID not in (select BuchID FROM ausleihe) ";
-
-
-
-
-
-
-if (isset($_POST["author"]) && $_POST["author"] !== $DEFAULT) {
-	$autor = $_POST["author"];
-	$baseSql .= ", autorbuchzuordnung abz ";
-	$constraints .= " AND abz.AutorID = $autor AND abz.BuchID = b.BuchID ";
-}
-
-if (isset($_POST["genre"]) && $_POST["genre"] !== $DEFAULT) {
-	$genreId = $_POST["genre"];
-
-	$baseSql .= ", buchgenrezuordnung bgz";
-	$constraints .= "AND bgz.GenreID = $genreId AND bgz.BuchID = b.BuchID";
-}
-
-if (isset($_POST["verlag"]) && $_POST["verlag"] !== $DEFAULT) {
-	$verlagId = $_POST["verlag"];
-
-	$constraints .= "AND b.VerlagID = $verlagId";
-}
-
-
-$sql = $baseSql . $constraints;
-
-
-try {
-	$result = mysqli_query($conn, $sql);
-	return $result;
-} catch (Throwable $th) {
-	return 0;
-}
-
-mysqli_close($conn);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option class='selectOption' value= {$row["KundenID"]}>" . $row["Nachname"] . ", " . $row["Vorname"] . "</option>";
+            }
+        }
+        ?>
+    </select>
+    <button type="submit" name="buchID" value=<?= $book->getBuchID() ?>>Ausleihen</button>
+</form>

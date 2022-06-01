@@ -17,8 +17,6 @@ $constraints = " WHERE b.BuchID not in (select BuchID FROM ausleihe) ";
 $baseTime = " 00:00:00.000000";
 
 
-
-
 if (isset($_POST["buchSuche"])) {
 
 	if ($_POST["author"] !== $DEFAULT) {
@@ -45,20 +43,22 @@ if (isset($_POST["buchSuche"])) {
 
 
 	try {
-		$result = mysqli_query($conn, $sql);
-		return $result;
+		$allRentableBookResults = mysqli_query($conn, $sql);
+		return $allRentableBookResults;
 	} catch (Throwable $th) {
 		return 0;
 	}
 } elseif (isset($_POST["buchFilterZurueksetzen"])) {
 	try {
 		$baseSql .= "WHERE b.BuchID not in (select BuchID FROM ausleihe)";
-		$result = mysqli_query($conn, $baseSql);
-		return $result;
+		$allRentableBookResults = mysqli_query($conn, $baseSql);
+		return $allRentableBookResults;
 	} catch (Throwable $th) {
 		return 0;
 	}
-} elseif (isset($_POST["buchID"])) {
+} 
+
+if (isset($_POST["buchID"])) {
 
 
 	if (isset($_POST["buchID"]) && isset($_POST["kunde"]) && isset($_POST["rueckgabe"])) {
@@ -67,13 +67,13 @@ if (isset($_POST["buchSuche"])) {
 		$buchId = $_POST["buchID"];
 		$kundeId = $_POST["kunde"];
 		$now = date("Y-m-d");
+
 		if ($rueckgabe > $now) {
 
-			$sql = "INSERT INTO ausleihe (`Leihdatum`, `Rückgabedatum`, `BuchID`, `KundeID`) VALUES ('$now . $baseTime' , '$rueckgabe . $baseTime','$buchId','$kundeId')";
-
+			$sql = "INSERT INTO ausleihe (`Leihdatum`, `Rückgabedatum`, `BuchID`, `KundenID`) VALUES ('$now . $baseTime' , '$rueckgabe . $baseTime','$buchId','$kundeId')";
+		
 			try {
-				mysqli_query($conn, $sql);
-				return 1;
+				return mysqli_query($conn, $sql);
 			} catch (Throwable $th) {
 				return 0;
 			}
@@ -84,4 +84,36 @@ if (isset($_POST["buchSuche"])) {
 }
 
 
-mysqli_close($conn);
+if(isset($_POST["rueckgabe"])) {
+	$values = explode("+",$_POST["rueckgabe"]);
+	$buchId = $values[0];
+	$kundeId = $values[1];
+
+	$sql = "DELETE FROM ausleihe WHERE ausleihe.BuchID = $buchId AND ausleihe.KundenID = $kundeId";
+
+	try {
+		mysqli_query($conn, $sql);
+		
+	} catch (Throwable $th) {
+		return 0;
+	}
+}
+
+if (isset($_GET["kundenSuche"])) {
+	$kundeId = $_GET["kunde"];
+	$sql = "SELECT b.* FROM ausleihe a, buch b WHERE a.KundenID =$kundeId AND a.BuchID = b.BuchID";
+
+	try {
+		$allReturnableBooksResult = mysqli_query($conn, $sql);
+		return $allReturnableBooksResult;
+	} catch (Throwable $th) {
+		return 0;
+	}
+} else {
+	return 0;
+}
+
+
+
+
+

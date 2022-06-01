@@ -1,61 +1,20 @@
 <?php
 
-function getArrayyValuesAsString($array)
-{
-    $autorenAsString = "";
-
-    for ($i = 0; $i < count($array); $i++) {
-        if ($i === count($array) - 1) {
-            $autorenAsString .=  $array[$i];
-        } else {
-            $autorenAsString .= $array[$i] . ", ";
-        }
-    }
-    
-    return $autorenAsString;
-}
 
 
-foreach ($allBooks as $book) : ?>
-    <div class="bookContainer">
-        <h2><?= $book->getTitel() ?></h2>
-        <br>
-        <hr>
+if (count($allReturnableBooks) > 0) :
+    foreach ($allReturnableBooks as $book) : ?>
+        <div class="bookContainer">
+            <h2><?= $book->getTitel() ?></h2>
+            <br>
+            <hr>
 
 
-        <p>Autor:innen: <?= getArrayyValuesAsString($book->getAutoren()); ?></p>
-        <br>
-        <p>Genre(s): <?= getArrayyValuesAsString($book->getGenres()); ?></p>
-        <br>
-
-
-        <div class="description">
-            <h4>Beschreibung <img id="arrowDown" src="../assets/images/down-arrow.png" alt="arrow down" />
-                <h4>
-                    <p><?= $book->getBeschreibung() ?></p>
-        </div>
-        <br>
-        <hr>
-        <div class="tableContainer">
-
-            <table id="bookInformationTable">
-                <thead>
-                    <tr>
-                        <th>ISBN</th>
-                        <th>Seitenzahl</th>
-                        <th>Verlag</th>
-                    </tr>
-                </thead>
-                <tr>
-                    <td class="tableItem"><?= $book->getISBN() ?></td>
-                    <td class="tableItem"> <?= $book->getSeitenzahl() ?></td>
-                    <td class="tableItem"> <?= $book->getVerlag(); ?></td>
-                </tr>
-
-            </table>
-
-
-
+            <p>Autor:innen: <?= getArrayValuesAsString($book->getAutoren()); ?></p>
+            <br>
+            <p>Genre(s): <?= getArrayValuesAsString($book->getGenres()); ?></p>
+            <br>
+            <hr>
             <table class="lagerPlatzTable">
                 <thead>
                     <tr>
@@ -74,11 +33,19 @@ foreach ($allBooks as $book) : ?>
                     </tr>
                 </thead>
             </table>
+
+            <hr>
+            <div>
+                <p>Geliehen von:<?= $book->getKunde() ?> </p>
+                <br>
+                <p>Rückgabe bis spätestens: <?= $book->getRueckgabe() ?></p>
+            </div>
+            <hr>
+            <?php include($rootPath . "/includes/rueckgabe.php"); ?>
         </div>
-        <hr>
-
-        <?php include($rootPath . "/includes/ausleihe.php"); ?>
+    <?php endforeach;
+else : ?>
+    <div>
+        <h3>Keine Ergebnisse gefunden</h3>
     </div>
-
-
-<?php endforeach; ?>
+<?php endif ?>

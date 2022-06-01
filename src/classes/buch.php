@@ -17,6 +17,9 @@ class Buch
   private $Verlag;
   private $Autoren;
   private $Genres;
+  private $Kunde;
+  private $KundenID;
+  private $Rueckgabe;
 
 
   function __construct($bookValuesAsArray) 
@@ -279,6 +282,60 @@ class Buch
   public function setGenres($Genres): self
   {
     $this->Genres = $Genres;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of Kunde
+   */
+  public function getKunde()
+  {
+    return $this->Kunde;
+  }
+
+  /**
+   * Set the value of Kunde
+   */
+  public function setKunde($Kunde): self
+  {
+    $this->Kunde = $Kunde;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of Rueckgabe
+   */
+  public function getRueckgabe()
+  {
+    return $this->Rueckgabe;
+  }
+
+  /**
+   * Set the value of Rueckgabe
+   */
+  public function setRueckgabe($Rueckgabe): self
+  {
+    $this->Rueckgabe = $Rueckgabe;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of KundenID
+   */
+  public function getKundenID()
+  {
+    return $this->KundenID;
+  }
+
+  /**
+   * Set the value of KundenID
+   */
+  public function setKundenID($KundenID): self
+  {
+    $this->KundenID = $KundenID;
 
     return $this;
   }
