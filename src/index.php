@@ -20,6 +20,8 @@ $dbConnection = connectToMSQL($servername, $username, $password, $databaseName);
 $result = getAllRentableBooks($dbConnection, "buch");
 $allBooks = array();
 
+$allReturnableBooks = array();
+
 include($rootPath . "/includes/serverLogik.php");
 
 
@@ -76,11 +78,10 @@ if ($result) {
 
 <body id="page-container">
     <div id="ausleihen-container" class="flex category-container">
-    <h2 class="header">Ausleihen</h2>
-    <?php
-            include($rootPath . "/includes/suchFilter.php");
-            ?>
-        
+        <h2 class="header">Ausleihen</h2>
+        <?php
+        include($rootPath . "/includes/suchFilter.php");
+        ?>
         <div>
             <?php
             include($rootPath . "/includes/rentableBooks.php");
@@ -89,7 +90,17 @@ if ($result) {
     </div>
     <div id="zurueckgeben-container" class="flex category-container">
         <h2 class="header">Zurueckgeben</h2>
+        <?php
+        include($rootPath . "/includes/suchFilterZurueckgeben.php");
+        ?>
+
+        <div>
+            <?php
+            include($rootPath . "/includes/returnableBooks.php");
+            ?>
+        </div>
     </div>
+
 
     <?php
     mysqli_close($dbConnection);

@@ -50,6 +50,14 @@ if (isset($_POST["buchSuche"])) {
 	} catch (Throwable $th) {
 		return 0;
 	}
+} elseif (isset($_POST["buchFilterZurueksetzen"])) {
+	try {
+		$baseSql .= "WHERE b.BuchID not in (select BuchID FROM ausleihe)";
+		$result = mysqli_query($conn, $baseSql);
+		return $result;
+	} catch (Throwable $th) {
+		return 0;
+	}
 } elseif (isset($_POST["buchID"])) {
 
 
@@ -59,13 +67,13 @@ if (isset($_POST["buchSuche"])) {
 		$buchId = $_POST["buchID"];
 		$kundeId = $_POST["kunde"];
 		$now = date("Y-m-d");
-		if($rueckgabe > $now) {
+		if ($rueckgabe > $now) {
 
 			$sql = "INSERT INTO ausleihe (`Leihdatum`, `Rückgabedatum`, `BuchID`, `KundeID`) VALUES ('$now . $baseTime' , '$rueckgabe . $baseTime','$buchId','$kundeId')";
-			
+
 			try {
-				 mysqli_query($conn, $sql);
-				 return 1;
+				mysqli_query($conn, $sql);
+				return 1;
 			} catch (Throwable $th) {
 				return 0;
 			}
