@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<form method="post">
+<form method="post" action="index.php">
     <input type="date" name="rueckgabe">
     <select class='selectMenu'  name="kunde">
 

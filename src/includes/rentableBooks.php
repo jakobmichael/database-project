@@ -1,5 +1,9 @@
 <?php
 
+
+$allRentableBooks = $_SESSION["allRentableBooks"];
+
+
 function getArrayValuesAsString($array)
 {
     $autorenAsString = "";

@@ -2,7 +2,7 @@
 
 ?>
 
-<form action="" method="get" class="filter-form">
+<form action="index.php" method="get" class="filter-form">
 <h3 class="header filter-header" style="display: inline">Filter: </h3>
 
  <select name="kunde">

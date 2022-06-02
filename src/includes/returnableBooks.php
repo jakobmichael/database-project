@@ -1,8 +1,9 @@
 <?php
 
-
+$allReturnableBooks = $_SESSION["allReturnableBooks"];
 
 if (count($allReturnableBooks) > 0) :
+    
     foreach ($allReturnableBooks as $book) : ?>
         <div class="bookContainer">
             <h2><?= $book->getTitel() ?></h2>

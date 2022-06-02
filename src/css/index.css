@@ -46,7 +46,28 @@ html {
 #page-container {
   width: 100vw;
   display: flex;
+  flex-direction: column;
 }
+
+#error-container {
+  display: flex;
+  margin: 10px 0 0 0;
+  padding: 5px;
+  background-color: red;
+  z-index: 2;
+  align-items: center;
+flex-direction: column;
+}
+#invisible-error-container {
+  display: none;
+}
+
+#content-container {
+  display: flex;
+  flex-direction: row;
+  z-index: 0;
+}
+
 .category-container {
   padding: 3%;
   width: 80%;
@@ -58,4 +79,9 @@ html {
 }
 #ausleihen-container {
   float: left;
+}
+
+header {
+  background-color: #a0a4a78a;
+  height: 30px;
 }

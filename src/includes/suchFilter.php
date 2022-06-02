@@ -2,7 +2,7 @@
 
 ?>
 
-<form action="" method="post" class="filter-form">
+<form action="index.php" method="get" class="filter-form">
   <h3 class="header filter-header" style="display: inline">Filter: </h3>
 
   <select name="author">
@@ -51,7 +51,6 @@
     $result = mysqli_query($dbConnection, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-      // output data of each row
       while ($row = mysqli_fetch_assoc($result)) {
         echo "<option value= {$row["VerlagID"]}>" . $row["Name"] . "</option>";
       }

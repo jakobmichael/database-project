@@ -8,7 +8,7 @@ function getAllRentableBooks($conn)
 
         return $allRentableBookResults;
     } catch (Throwable $th) {
-        return 0;
+        $_SESSION["errorMessage"] = $th->getMessage();
     }
 }
 
@@ -22,7 +22,7 @@ function getLagerplatzForBook($conn, $book)
         $result = mysqli_query($conn, $sql);
         return $result;
     } catch (Throwable $th) {
-        return 0;
+        $_SESSION["errorMessage"] = $th->getMessage();
     }
 }
 
@@ -35,7 +35,7 @@ function getVerlagForBook($conn, $book)
         $result = mysqli_query($conn, $sql);
         return $result;
     } catch (Throwable $th) {
-        return 0;
+        $_SESSION["errorMessage"] = $th->getMessage();
     }
 }
 
@@ -50,7 +50,7 @@ function getAllAuthorsForBook($conn, $book)
         $result = mysqli_query($conn, $sql);
         return $result;
     } catch (Throwable $th) {
-        return 0;
+        $_SESSION["errorMessage"] = $th->getMessage();
     }
 }
 
@@ -65,7 +65,7 @@ function getAllGenresForBook($conn, $book)
         $result = mysqli_query($conn, $sql);
         return $result;
     } catch (Throwable $th) {
-        return 0;
+        $_SESSION["errorMessage"] = $th->getMessage();
     }
 }
 
@@ -81,7 +81,7 @@ function getCustomerAndReturndateForRentedBook($conn, $book)
 
         return mysqli_fetch_assoc($result);
     } catch (Throwable $th) {
-        return 0;
+        $_SESSION["errorMessage"] = $th->getMessage();
     }
 }
 
