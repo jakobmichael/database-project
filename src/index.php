@@ -100,12 +100,13 @@ if (isset($_POST["buchID"])) {
 
         if ($rueckgabe > $now) {
 
-            $sql = "INSERT INTO ausleihe (`Leihdatum`, `Rückgabedatum`, `BuchID`, `KundenID`) VALUES ('$now . $baseTime' , '$rueckgabe . $baseTime','$buchId','$kundeId')";
-
+            $sql = "INSERT INTO ausleihe (`Leihdatum`, `Rückgabedatum`, `BuchID`, `KundenID`) VALUES ('$now' , '$rueckgabe','$buchId','$kundeId')";
             try {
                 mysqli_query($dbConnection, $sql);
             } catch (Throwable $th) {
                 $_SESSION["errorMessage"] = $th->getMessage();
+            } finally{
+                $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(getAllRentableBooks($dbConnection), $dbConnection, "allRentableBooks");
             }
         } else {
             $_SESSION["errorMessage"] = "Rückgabedatum muss nach dem Ausleihdatum liegen!";
@@ -126,7 +127,8 @@ if (isset($_POST["zurueckgeben"])) {
         $_SESSION["allReturnableBooks"] = array();
     } catch (Throwable $th) {
         $_SESSION["errorMessage"] = $th->getMessage();
-        
+    } finally{
+         $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(getAllRentableBooks($dbConnection), $dbConnection, "allRentableBooks");
     }
 }
 

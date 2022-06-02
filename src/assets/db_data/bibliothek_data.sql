@@ -324,7 +324,7 @@ INSERT INTO `verlag` (`VerlagID`, `Name`, `Email`, `Telefonnummer`, `Straße`, `
 --
 ALTER TABLE `ausleihe`
   ADD PRIMARY KEY (`AusleiheID`),
-  ADD KEY `ausleihe_fk_buch` (`BuchID`),
+  ADD UNIQUE KEY `ausleihe_fk_buch` (`BuchID`),
   ADD KEY `ausleihe_fk_kunde` (`KundenID`);
 
 --
