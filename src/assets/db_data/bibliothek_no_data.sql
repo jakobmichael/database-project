@@ -32,7 +32,7 @@ CREATE TABLE `ausleihe` (
   `Leihdatum` datetime NOT NULL,
   `Rückgabedatum` datetime NOT NULL,
   `BuchID` int(11) NOT NULL,
-  `KundeID` int(11) NOT NULL
+  `KundenID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -168,7 +168,7 @@ CREATE TABLE `verlag` (
 ALTER TABLE `ausleihe`
   ADD PRIMARY KEY (`AusleiheID`),
   ADD KEY `ausleihe_fk_buch` (`BuchID`),
-  ADD KEY `ausleihe_fk_kunde` (`KundeID`);
+  ADD KEY `ausleihe_fk_kunde` (`KundenID`);
 
 --
 -- Indizes für die Tabelle `autor`
@@ -299,7 +299,7 @@ ALTER TABLE `verlag`
 --
 ALTER TABLE `ausleihe`
   ADD CONSTRAINT `ausleihe_fk_buch` FOREIGN KEY (`BuchID`) REFERENCES `buch` (`BuchID`),
-  ADD CONSTRAINT `ausleihe_fk_kunde` FOREIGN KEY (`KundeID`) REFERENCES `kunde` (`KundenID`);
+  ADD CONSTRAINT `ausleihe_fk_kunde` FOREIGN KEY (`KundenID`) REFERENCES `kunde` (`KundenID`);
 
 --
 -- Constraints der Tabelle `autorbuchzuordnung`
