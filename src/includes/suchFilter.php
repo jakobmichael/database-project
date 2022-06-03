@@ -70,7 +70,7 @@
   </p>
   <p class="label-and-select">
     <label for="verlag">&nbsp;</label>
-    <button name="buchFilterZurueksetzen" value="buchFilterZurueksetzen" type="submit">Zurücksetzen</button>
+    <button name="buchFilterZurueksetzen" value="buchFilterZurueksetzen" type="submit">Zur&uuml;cksetzen</button>
   </p>
   <p class="label-and-select">
     <label for="verlag">&nbsp;</label>

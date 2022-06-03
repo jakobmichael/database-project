@@ -153,7 +153,7 @@ if (isset($_POST["fehlerZuruecksetzen"])) {
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Büchereisystem</title>
+    <title>B&uuml;chereisystem</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/rentableBooks.css">
@@ -162,7 +162,7 @@ if (isset($_POST["fehlerZuruecksetzen"])) {
 
 <header>
     <img alt="book-icon" src="/assets/images/book.png" width="25px" id="book-icon">
-    <p>Büchereisystem </p>
+    <p>B&uuml;chereisystem </p>
     <a href="<?php $_SERVER['PHP_SELF']; ?>"><img alt="book-icon" src="/assets/images/refresh.png" width="20px" id="book-icon"></a>
     
 
