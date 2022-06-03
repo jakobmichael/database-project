@@ -67,18 +67,23 @@ if (isset($_GET["buchSuche"])) {
         $genreId = $_GET["genre"];
 
         $baseSql .= ", buchgenrezuordnung bgz";
-        $constraints .= "AND bgz.GenreID = $genreId AND bgz.BuchID = b.BuchID";
+        $constraints .= " AND bgz.GenreID = $genreId AND bgz.BuchID = b.BuchID";
     }
 
     if ($_GET["verlag"] !== $DEFAULT) {
         $verlagId = $_GET["verlag"];
 
-        $constraints .= "AND b.VerlagID = $verlagId";
+        $constraints .= " AND b.VerlagID = $verlagId";
     }
 
 
     $sql = $baseSql . $constraints;
-    $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(mysqli_query($dbConnection, $sql), $dbConnection, "allRentableBooks", true);
+
+    try {
+        $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(mysqli_query($dbConnection, $sql), $dbConnection, "allRentableBooks", true);
+    } catch (Throwable $th) {
+        $_SESSION["errorMessage"] = $th->getMessage();
+    }
 } elseif (isset($_GET["buchFilterZurueksetzen"])) {
     try {
         $baseSql .= "WHERE b.BuchID not in (select BuchID FROM ausleihe)";
@@ -105,7 +110,7 @@ if (isset($_POST["buchID"])) {
                 mysqli_query($dbConnection, $sql);
             } catch (Throwable $th) {
                 $_SESSION["errorMessage"] = $th->getMessage();
-            } finally{
+            } finally {
                 $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(getAllRentableBooks($dbConnection), $dbConnection, "allRentableBooks");
             }
         } else {
@@ -127,8 +132,8 @@ if (isset($_POST["zurueckgeben"])) {
         $_SESSION["allReturnableBooks"] = array();
     } catch (Throwable $th) {
         $_SESSION["errorMessage"] = $th->getMessage();
-    } finally{
-         $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(getAllRentableBooks($dbConnection), $dbConnection, "allRentableBooks");
+    } finally {
+        $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(getAllRentableBooks($dbConnection), $dbConnection, "allRentableBooks");
     }
 }
 
@@ -171,7 +176,7 @@ if (isset($_POST["fehlerZuruecksetzen"])) {
         <p><?= $_SESSION["errorMessage"] ?></p>
         <br>
         <form action="index.php" method="post">
-            <button type="submit" name="fehlerZuruecksetzen" value="fehlerZuruecksetzen">Fehler zurücksetzen</button>
+            <button type="submit" id="fehler-zuruecksetzen" name="fehlerZuruecksetzen" value="fehlerZuruecksetzen">Fehler zurücksetzen</button>
         </form>
     </div>
     <div id="content-container">
