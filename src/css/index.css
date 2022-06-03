@@ -135,4 +135,20 @@ header {
   align-items: center;
 }
 
+#book-icon:hover {
+  /* transform: rotate(15deg); */
+  animation: iconWiggle alternate infinite 0.25s;
+
+}
+
+@keyframes iconWiggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(15deg);
+  }
+  
+}
+
 
