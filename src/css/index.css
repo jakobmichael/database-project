@@ -8,11 +8,11 @@ h3 {
   font-size: 1.17em;
 }
 select {
-  width: 100px;
+  width: 105px;
   height: 20px;
   border: 1px solid #999;
   font-size: 13px;
-  color: #008000;
+  color: #1a7ebc;
   background-color: #ffffff;
   border-radius: 5px;
   box-shadow: 4px 4px #ccc;
@@ -20,6 +20,34 @@ select {
 
 html {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button {
+  width: 100px;
+  height: 20px;
+  border: 1px solid #999;
+  font-size: 13px;
+  color: #1a7ebc;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 4px 4px #ccc;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+label {
+  width: 105px;
+  margin: 0 0 5px 0;
+  font-size: smaller;
+}
+
+.label-and-select {
+  width: 105px;
+  margin: 0px !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .flex {
@@ -38,8 +66,13 @@ html {
 }
 
 .filter-form {
-  margin: 1vw;
+  margin: 1px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-items: end;
+  
 }
+
 
 /* Container */
 
@@ -56,7 +89,7 @@ html {
   background-color: red;
   z-index: 2;
   align-items: center;
-flex-direction: column;
+  flex-direction: column;
 }
 #invisible-error-container {
   display: none;
@@ -69,7 +102,7 @@ flex-direction: column;
 }
 
 .category-container {
-  padding: 3%;
+  padding: 3px;
   width: 80%;
   flex-direction: column;
   align-items: center;
@@ -79,6 +112,10 @@ flex-direction: column;
 }
 #ausleihen-container {
   float: left;
+}
+
+#zurueckgeben-button {
+  width: auto;
 }
 
 header {
