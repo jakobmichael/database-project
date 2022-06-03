@@ -156,20 +156,22 @@ if (isset($_POST["fehlerZuruecksetzen"])) {
 ?>
 
 <html>
-
 <head>
     <meta charset="utf-8" />
-    <title>Büchereisystem</title>
+    <title>B&uuml;chereisystem</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/rentableBooks.css">
     <link rel="stylesheet" href="css/ausleihFooter.css">
 </head>
 
-<!-- <header>
+<header>
+    <img alt="book-icon" src="/assets/images/book.png" width="25px" id="book-icon">
+    <p>B&uuml;chereisystem </p>
+    <a href="<?php $_SERVER['PHP_SELF']; ?>"><img alt="book-icon" src="/assets/images/refresh.png" width="20px" id="book-icon"></a>
+    
 
-    <a href="<?php $_SERVER['PHP_SELF']; ?>">Recargar</a>
-</header> -->
+</header>
 
 <body id="page-container">
     <div id=<?= $_SESSION["errorMessage"] === null ? "invisible-error-container" :  "error-container" ?>>
@@ -192,7 +194,7 @@ if (isset($_POST["fehlerZuruecksetzen"])) {
             </div>
         </div>
         <div id="zurueckgeben-container" class="flex category-container">
-            <h2 class="header">Zurueckgeben</h2>
+            <h2 class="header">Zur&uuml;ckgeben</h2>
             <?php
             include($rootPath . "/includes/suchFilterZurueckgeben.php");
             ?>
