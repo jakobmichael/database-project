@@ -8,8 +8,8 @@
     </div>
     <div class="row">
         <div class="input-container">
-            <label for="">Beschreibung</label>
-            <textarea> </textarea>
+            <label>Beschreibung</label>
+            <textarea name="description"> </textarea>
         </div>
     </div>
     <div class="row">
@@ -41,6 +41,6 @@
     </div>
     <div class="form-footer">
         <button class="btn" name="zuruecksetzen" value="zuruecksetzen" type="reset">Zur&uuml;cksetzen</button>
-        <button class="btn" type="submit">Create</button>
+        <button class="btn" name="addBook" type="submit">Create</button>
     </div>
 </form>

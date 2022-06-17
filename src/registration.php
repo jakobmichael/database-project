@@ -1,6 +1,8 @@
 <?php
 $rootPath = $_SERVER['DOCUMENT_ROOT'];
 
+session_start();
+
 $servername = "localhost";
 $username = "library_system";
 $password = "library";
@@ -8,6 +10,30 @@ $databaseName = "bibliothek";
 
 $dbConnection = mysqli_connect($servername, $username, $password, $databaseName);
 
+if (isset($_POST["addBook"]) && isset($_POST["titel"]) && isset($_POST["description"]) && isset($_POST["isbn"]) && isset($_POST["seitenzahl"]) && isset($_POST["erschienen"]) && isset($_POST["lagerplatzid"]) && isset($_POST["verlagid"])) {
+
+    $titel = $_POST["titel"];
+    $description = $_POST["description"];
+    $isbn = $_POST["isbn"];
+    $seitenzahl = $_POST["seitenzahl"];
+    $erschienen = $_POST["erschienen"];
+    $lagerplatzid = $_POST["lagerplatzid"];
+    $verlagid = $_POST["verlagid"];
+
+    $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid') AND ";
+
+    try {
+        mysqli_query($dbConnection, $sql);
+    } catch (Throwable $th) {
+        $_SESSION["errorMessage"] = $th->getMessage();
+    }
+} else {
+    $_SESSION["errorMessage"] = "Alle Felder sollten gesetzt sein";
+}
+
+if (isset($_POST["fehlerZuruecksetzen"])) {
+    $_SESSION["errorMessage"] = null;
+}
 ?>
 <html>
 
@@ -27,9 +53,16 @@ $dbConnection = mysqli_connect($servername, $username, $password, $databaseName)
 </header>
 
 <body class="page-container">
+    <div id=<?= $_SESSION["errorMessage"] === null ? "invisible-error-container" :  "error-container" ?>>
+        <p><?= $_SESSION["errorMessage"] ?></p>
+        <br>
+        <form action="registration.php" method="post">
+            <button type="submit" id="fehler-zuruecksetzen" name="fehlerZuruecksetzen" value="fehlerZuruecksetzen">Fehler zurücksetzen</button>
+        </form>
+    </div>
     <div class="form-container">
         <?php
-        include($rootPath . "/includes/createUserForm.php");
+        include($rootPath . "/includes/addUser.php");
         ?>
     </div>
     <div class="form-container">
