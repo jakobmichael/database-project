@@ -10,7 +10,7 @@ $databaseName = "bibliothek";
 
 $dbConnection = mysqli_connect($servername, $username, $password, $databaseName);
 
-if (isset($_POST["addBook"]) && isset($_POST["titel"]) && isset($_POST["description"]) && isset($_POST["isbn"]) && isset($_POST["seitenzahl"]) && isset($_POST["erschienen"]) && isset($_POST["lagerplatzid"]) && isset($_POST["verlagid"])) {
+if (isset($_POST["addBook"]) && isset($_POST["titel"]) && isset($_POST["description"]) && isset($_POST["isbn"]) && isset($_POST["seitenzahl"]) && isset($_POST["erschienen"]) && isset($_POST["lagerplatzid"]) && isset($_POST["verlagid"]) && isset($_POST["genreid"]) && isset($_POST["autorid"])) {
 
     $titel = $_POST["titel"];
     $description = $_POST["description"];
@@ -19,8 +19,28 @@ if (isset($_POST["addBook"]) && isset($_POST["titel"]) && isset($_POST["descript
     $erschienen = $_POST["erschienen"];
     $lagerplatzid = $_POST["lagerplatzid"];
     $verlagid = $_POST["verlagid"];
+    $genreid = $_POST["genreid"];
+    $autorid = $_POST["autorid"];
 
-    $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid') AND ";
+    $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid')";
+    $sql2 = "INSERT INTO buchgenrezuordnung ( `BuchID`, `GenreID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $genreid)";
+    try {
+        mysqli_query($dbConnection, $sql);
+        mysqli_query($dbConnection, $sql2);
+    } catch (Throwable $th) {
+        $_SESSION["errorMessage"] = $th->getMessage();
+    }
+} else if (isset($_POST["addUser"]) && isset($_POST["vorname"]) && isset($_POST["nachname"]) && isset($_POST["strasse"]) && isset($_POST["hausnummer"]) && isset($_POST["plz"]) && isset($_POST["email"]) && isset($_POST["geburtsdatum"])) {
+
+    $vorname = $_POST["vorname"];
+    $nachname = $_POST["nachname"];
+    $strasse = $_POST["strasse"];
+    $hausnummer = $_POST["hausnummer"];
+    $plz = $_POST["plz"];
+    $email = $_POST["email"];
+    $geburtsdatum = $_POST["geburtsdatum"];
+
+    $sql = "INSERT INTO kunde (`Nachname`, `Vorname`, `Straße`, `Hausnummer`, `PLZ`, `Geburtsdatum`, `Email`) VALUES ('$nachname', '$vorname', '$strasse', '$hausnummer', '$plz', '$email', '$geburtsdatum')";
 
     try {
         mysqli_query($dbConnection, $sql);
