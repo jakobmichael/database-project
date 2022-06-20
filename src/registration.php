@@ -22,6 +22,38 @@ if (isset($_POST["addBook"])) {
         $erschienen = $_POST["erschienen"];
         $lagerplatzid = $_POST["lagerplatzid"];
         $verlagid = $_POST["verlagid"];
+        $genreid = $_POST["genreid"];
+        $autorid = $_POST["autorid"];
+
+        $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid')";
+        $sql2 = "INSERT INTO buchgenrezuordnung ( `BuchID`, `GenreID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $genreid)";
+        try {
+            mysqli_query($dbConnection, $sql);
+            mysqli_query($dbConnection, $sql2);
+        } catch (Throwable $th) {
+            $_SESSION["errorMessage"] = $th->getMessage();
+        }
+    }
+} else if (isset($_POST["addUser"])) {
+    if (isset($_POST["vorname"]) && isset($_POST["nachname"]) && isset($_POST["strasse"]) && isset($_POST["hausnummer"]) && isset($_POST["plz"]) && isset($_POST["email"]) && isset($_POST["geburtsdatum"])) {
+
+        $vorname = $_POST["vorname"];
+        $nachname = $_POST["nachname"];
+        $strasse = $_POST["strasse"];
+        $hausnummer = $_POST["hausnummer"];
+        $plz = $_POST["plz"];
+        $email = $_POST["email"];
+        $geburtsdatum = $_POST["geburtsdatum"];
+
+        $sql = "INSERT INTO kunde (`Nachname`, `Vorname`, `Straße`, `Hausnummer`, `PLZ`, `Geburtsdatum`, `Email`) VALUES ('$nachname', '$vorname', '$strasse', '$hausnummer', '$plz', '$email', '$geburtsdatum')";
+
+        $titel = $_POST["titel"];
+        $description = $_POST["description"];
+        $isbn = $_POST["isbn"];
+        $seitenzahl = $_POST["seitenzahl"];
+        $erschienen = $_POST["erschienen"];
+        $lagerplatzid = $_POST["lagerplatzid"];
+        $verlagid = $_POST["verlagid"];
 
         $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid') AND ";
 
@@ -34,6 +66,7 @@ if (isset($_POST["addBook"])) {
         $_SESSION["errorMessage"] = "Alle Felder sollten gesetzt sein";
     }
 }
+
 
 
 if (isset($_POST["fehlerZuruecksetzen"])) {

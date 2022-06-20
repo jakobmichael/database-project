@@ -39,6 +39,18 @@
             <input name="verlagid" type="text" placholder="VerlagID">
         </div>
     </div>
+
+    <div class="row">
+        <div class="input-container">
+            <label>GenreID </label>
+            <input name="genreid" type="text" placholder="GenreID">
+        </div>
+        <div class="input-container">
+            <label>AutorID </label>
+            <input name="autorid" type="text" placholder="AutorID">
+        </div>
+    </div>
+
     <div class="form-footer">
         <button class="btn" name="zuruecksetzen" value="zuruecksetzen" type="reset">Zur&uuml;cksetzen</button>
         <button class="btn" name="addBook" type="submit">Create</button>
