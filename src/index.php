@@ -16,7 +16,7 @@ $databaseName = "bibliothek";
 $dbConnection = connectToMSQL($servername, $username, $password, $databaseName);
 
 if (!isset($_SESSION["allRentableBooks"])) {
-    $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(getAllRentableBooks($dbConnection), $dbConnection, "allRentableBooks");
+    $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(getAllRentableBooks($dbConnection), $dbConnection, true);
 }
 
 if (!isset($_SESSION["allReturnableBooks"])) {
@@ -80,14 +80,14 @@ if (isset($_GET["buchSuche"])) {
     $sql = $baseSql . $constraints;
 
     try {
-        $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(mysqli_query($dbConnection, $sql), $dbConnection, "allRentableBooks", true);
+        $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(mysqli_query($dbConnection, $sql), $dbConnection, true);
     } catch (Throwable $th) {
         $_SESSION["errorMessage"] = $th->getMessage();
     }
 } elseif (isset($_GET["buchFilterZurueksetzen"])) {
     try {
         $baseSql .= "WHERE b.BuchID not in (select BuchID FROM ausleihe)";
-        $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(mysqli_query($dbConnection, $baseSql), $dbConnection, "allRentableBooks", true);
+        $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(mysqli_query($dbConnection, $baseSql), $dbConnection, true);
     } catch (Throwable $th) {
         $_SESSION["allRentableBooks"] = array();
         $_SESSION["errorMessage"] = $th->getMessage();
@@ -111,7 +111,7 @@ if (isset($_POST["buchID"])) {
             } catch (Throwable $th) {
                 $_SESSION["errorMessage"] = $th->getMessage();
             } finally {
-                $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(getAllRentableBooks($dbConnection), $dbConnection, "allRentableBooks");
+                $_SESSION["allRentableBooks"] = retrieveBooksFromSqlResult(getAllRentableBooks($dbConnection), $dbConnection, true);
             }
         } else {
             $_SESSION["errorMessage"] = "Rückgabedatum muss nach dem Ausleihdatum liegen!";
@@ -137,7 +137,7 @@ if (isset($_POST["zurueckgeben"])) {
     }
 }
 
-if (isset($_GET["kundenSuche"])) {
+if (isset($_GET["kundenSuche"]) && $_GET["kunde"] !== $DEFAULT) {
     $kundeId = $_GET["kunde"];
     $sql = "SELECT b.* FROM ausleihe a, buch b WHERE a.KundenID =$kundeId AND a.BuchID = b.BuchID";
 
@@ -167,11 +167,15 @@ if (isset($_POST["fehlerZuruecksetzen"])) {
 </head>
 
 <header>
-    <a href="index.php">
-        <img alt="book-icon" src="/assets/images/book.png" width="25px" id="book-icon">
-    </a>
+    <span>
+        <a href="registration.php">
+            <img alt="gear-icon" src="/assets/images/settings.png" width="25px" id="gear-icon">
+        </a>
+    </span>
     <p>B&uuml;chereisystem </p>
-    <a href="<?php $_SERVER['PHP_SELF']; ?>"><img alt="book-icon" src="/assets/images/refresh.png" width="20px" id="book-icon"></a>
+    <a href="<?php $_SERVER['PHP_SELF']; ?>"><img alt="book-icon" src="/assets/images/refresh.png" width="20px" id="refresh-icon"></a>
+
+
 
 
 </header>

@@ -10,26 +10,31 @@ $databaseName = "bibliothek";
 
 $dbConnection = mysqli_connect($servername, $username, $password, $databaseName);
 
-if (isset($_POST["addBook"]) && isset($_POST["titel"]) && isset($_POST["description"]) && isset($_POST["isbn"]) && isset($_POST["seitenzahl"]) && isset($_POST["erschienen"]) && isset($_POST["lagerplatzid"]) && isset($_POST["verlagid"])) {
 
-    $titel = $_POST["titel"];
-    $description = $_POST["description"];
-    $isbn = $_POST["isbn"];
-    $seitenzahl = $_POST["seitenzahl"];
-    $erschienen = $_POST["erschienen"];
-    $lagerplatzid = $_POST["lagerplatzid"];
-    $verlagid = $_POST["verlagid"];
+if (isset($_POST["addBook"])) {
 
-    $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid') AND ";
+    if (isset($_POST["titel"]) && isset($_POST["description"]) && isset($_POST["isbn"]) && isset($_POST["seitenzahl"]) && isset($_POST["erschienen"]) && isset($_POST["lagerplatzid"]) && isset($_POST["verlagid"])) {
 
-    try {
-        mysqli_query($dbConnection, $sql);
-    } catch (Throwable $th) {
-        $_SESSION["errorMessage"] = $th->getMessage();
+        $titel = $_POST["titel"];
+        $description = $_POST["description"];
+        $isbn = $_POST["isbn"];
+        $seitenzahl = $_POST["seitenzahl"];
+        $erschienen = $_POST["erschienen"];
+        $lagerplatzid = $_POST["lagerplatzid"];
+        $verlagid = $_POST["verlagid"];
+
+        $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid') AND ";
+
+        try {
+            mysqli_query($dbConnection, $sql);
+        } catch (Throwable $th) {
+            $_SESSION["errorMessage"] = $th->getMessage();
+        }
+    } else {
+        $_SESSION["errorMessage"] = "Alle Felder sollten gesetzt sein";
     }
-} else {
-    $_SESSION["errorMessage"] = "Alle Felder sollten gesetzt sein";
 }
+
 
 if (isset($_POST["fehlerZuruecksetzen"])) {
     $_SESSION["errorMessage"] = null;

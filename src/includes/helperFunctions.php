@@ -77,8 +77,6 @@ function getCustomerAndReturndateForRentedBook($conn, $book)
 
     try {
         $result = mysqli_query($conn, $sql);
-
-
         return mysqli_fetch_assoc($result);
     } catch (Throwable $th) {
         $_SESSION["errorMessage"] = $th->getMessage();

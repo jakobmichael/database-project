@@ -138,7 +138,14 @@ header {
 #book-icon:hover {
   /* transform: rotate(15deg); */
   animation: iconWiggle alternate infinite 0.25s;
+}
 
+#gear-icon:hover {
+  animation: iconWiggle alternate infinite 0.25s;
+}
+
+#refresh-icon:hover {
+  animation: rotation 1s infinite linear;
 }
 
 @keyframes iconWiggle {
@@ -147,6 +154,16 @@ header {
   }
   to {
     transform: rotate(15deg);
+  }
+  
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
   }
   
 }

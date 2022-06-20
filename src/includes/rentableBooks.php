@@ -25,14 +25,10 @@ if (count($allRentableBooks) > 0) :
             <h2><?= $book->getTitel() ?></h2>
             <br>
             <hr>
-
-
             <p>Autor:innen: <?= getArrayValuesAsString($book->getAutoren()); ?></p>
             <br>
             <p>Genre(s): <?= getArrayValuesAsString($book->getGenres()); ?></p>
             <br>
-
-
             <div class="description">
                 <h4>Beschreibung <img id="arrowDown" src="../assets/images/down-arrow.png" alt="arrow down" />
                     <h4>
@@ -41,7 +37,6 @@ if (count($allRentableBooks) > 0) :
             <br>
             <hr>
             <div class="tableContainer">
-
                 <table id="bookInformationTable">
                     <thead>
                         <tr>
@@ -57,9 +52,6 @@ if (count($allRentableBooks) > 0) :
                     </tr>
 
                 </table>
-
-
-
                 <table class="lagerPlatzTable">
                     <thead>
                         <tr>
