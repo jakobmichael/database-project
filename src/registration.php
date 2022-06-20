@@ -10,46 +10,64 @@ $databaseName = "bibliothek";
 
 $dbConnection = mysqli_connect($servername, $username, $password, $databaseName);
 
-if (isset($_POST["addBook"]) && isset($_POST["titel"]) && isset($_POST["description"]) && isset($_POST["isbn"]) && isset($_POST["seitenzahl"]) && isset($_POST["erschienen"]) && isset($_POST["lagerplatzid"]) && isset($_POST["verlagid"]) && isset($_POST["genreid"]) && isset($_POST["autorid"])) {
 
-    $titel = $_POST["titel"];
-    $description = $_POST["description"];
-    $isbn = $_POST["isbn"];
-    $seitenzahl = $_POST["seitenzahl"];
-    $erschienen = $_POST["erschienen"];
-    $lagerplatzid = $_POST["lagerplatzid"];
-    $verlagid = $_POST["verlagid"];
-    $genreid = $_POST["genreid"];
-    $autorid = $_POST["autorid"];
+if (isset($_POST["addBook"])) {
 
-    $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid')";
-    $sqlZuordnungen = "INSERT INTO buchgenrezuordnung ( `BuchID`, `GenreID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $genreid) AND INSERT INTO autorbuchzuordnung (`AutorID`, `BuchID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $autorid) ";
-    try {
-        mysqli_query($dbConnection, $sql);
-        mysqli_query($dbConnection, $sqlZuordnungen);
-    } catch (Throwable $th) {
-        $_SESSION["errorMessage"] = $th->getMessage();
+    if (isset($_POST["titel"]) && isset($_POST["description"]) && isset($_POST["isbn"]) && isset($_POST["seitenzahl"]) && isset($_POST["erschienen"]) && isset($_POST["lagerplatzid"]) && isset($_POST["verlagid"])) {
+
+        $titel = $_POST["titel"];
+        $description = $_POST["description"];
+        $isbn = $_POST["isbn"];
+        $seitenzahl = $_POST["seitenzahl"];
+        $erschienen = $_POST["erschienen"];
+        $lagerplatzid = $_POST["lagerplatzid"];
+        $verlagid = $_POST["verlagid"];
+        $genreid = $_POST["genreid"];
+        $autorid = $_POST["autorid"];
+
+        $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid')";
+        $sqlZuordnungen = "INSERT INTO buchgenrezuordnung ( `BuchID`, `GenreID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $genreid) AND INSERT INTO autorbuchzuordnung (`AutorID`, `BuchID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $autorid) ";
+        try {
+            mysqli_query($dbConnection, $sql);
+            mysqli_query($dbConnection, $sqlZuordnungen);
+        } catch (Throwable $th) {
+            $_SESSION["errorMessage"] = $th->getMessage();
+        }
     }
-} else if (isset($_POST["addUser"]) && isset($_POST["vorname"]) && isset($_POST["nachname"]) && isset($_POST["strasse"]) && isset($_POST["hausnummer"]) && isset($_POST["plz"]) && isset($_POST["email"]) && isset($_POST["geburtsdatum"])) {
+} else if (isset($_POST["addUser"])) {
+    if (isset($_POST["vorname"]) && isset($_POST["nachname"]) && isset($_POST["strasse"]) && isset($_POST["hausnummer"]) && isset($_POST["plz"]) && isset($_POST["email"]) && isset($_POST["geburtsdatum"])) {
 
-    $vorname = $_POST["vorname"];
-    $nachname = $_POST["nachname"];
-    $strasse = $_POST["strasse"];
-    $hausnummer = $_POST["hausnummer"];
-    $plz = $_POST["plz"];
-    $email = $_POST["email"];
-    $geburtsdatum = $_POST["geburtsdatum"];
+        $vorname = $_POST["vorname"];
+        $nachname = $_POST["nachname"];
+        $strasse = $_POST["strasse"];
+        $hausnummer = $_POST["hausnummer"];
+        $plz = $_POST["plz"];
+        $email = $_POST["email"];
+        $geburtsdatum = $_POST["geburtsdatum"];
 
-    $sql = "INSERT INTO kunde (`Nachname`, `Vorname`, `Straße`, `Hausnummer`, `PLZ`, `Geburtsdatum`, `Email`) VALUES ('$nachname', '$vorname', '$strasse', '$hausnummer', '$plz', '$email', '$geburtsdatum')";
+        $sql = "INSERT INTO kunde (`Nachname`, `Vorname`, `Straße`, `Hausnummer`, `PLZ`, `Geburtsdatum`, `Email`) VALUES ('$nachname', '$vorname', '$strasse', '$hausnummer', '$plz', '$email', '$geburtsdatum')";
 
-    try {
-        mysqli_query($dbConnection, $sql);
-    } catch (Throwable $th) {
-        $_SESSION["errorMessage"] = $th->getMessage();
+        $titel = $_POST["titel"];
+        $description = $_POST["description"];
+        $isbn = $_POST["isbn"];
+        $seitenzahl = $_POST["seitenzahl"];
+        $erschienen = $_POST["erschienen"];
+        $lagerplatzid = $_POST["lagerplatzid"];
+        $verlagid = $_POST["verlagid"];
+
+        $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid') AND ";
+
+        try {
+            mysqli_query($dbConnection, $sql);
+        } catch (Throwable $th) {
+            $_SESSION["errorMessage"] = $th->getMessage();
+        }
+    } else {
+        $_SESSION["errorMessage"] = "Alle Felder sollten gesetzt sein";
     }
-} else {
-    $_SESSION["errorMessage"] = "Alle Felder sollten gesetzt sein";
 }
+
+
 
 if (isset($_POST["fehlerZuruecksetzen"])) {
     $_SESSION["errorMessage"] = null;

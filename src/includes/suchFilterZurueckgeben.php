@@ -11,6 +11,7 @@
       <option value="-">-</option>
 
       <?php
+     
       $sql = "SELECT Vorname, Nachname, KundenID FROM Kunde";
 
       $result = mysqli_query($dbConnection, $sql);
