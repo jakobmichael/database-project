@@ -26,7 +26,7 @@ if (isset($_POST["addBook"])) {
         $autorid = $_POST["autorid"];
 
         $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid')";
-        $sqlZuordnungen = "INSERT INTO buchgenrezuordnung ( `BuchID`, `GenreID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $genreid) AND INSERT INTO autorbuchzuordnung (`AutorID`, `BuchID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $autorid) ";
+        $sqlZuordnungen = "INSERT INTO buchgenrezuordnung ( `BuchID`, `GenreID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $genreid) AND INSERT INTO autorbuchzuordnung (`BuchID`, `AutorID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $autorid) ";
         try {
             mysqli_query($dbConnection, $sql);
             mysqli_query($dbConnection, $sqlZuordnungen);
@@ -46,16 +46,6 @@ if (isset($_POST["addBook"])) {
         $geburtsdatum = $_POST["geburtsdatum"];
 
         $sql = "INSERT INTO kunde (`Nachname`, `Vorname`, `Straße`, `Hausnummer`, `PLZ`, `Geburtsdatum`, `Email`) VALUES ('$nachname', '$vorname', '$strasse', '$hausnummer', '$plz', '$email', '$geburtsdatum')";
-
-        $titel = $_POST["titel"];
-        $description = $_POST["description"];
-        $isbn = $_POST["isbn"];
-        $seitenzahl = $_POST["seitenzahl"];
-        $erschienen = $_POST["erschienen"];
-        $lagerplatzid = $_POST["lagerplatzid"];
-        $verlagid = $_POST["verlagid"];
-
-        $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid') AND ";
 
         try {
             mysqli_query($dbConnection, $sql);
