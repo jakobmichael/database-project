@@ -26,10 +26,12 @@ if (isset($_POST["addBook"])) {
         $autorid = $_POST["autorid"];
 
         $sql = "INSERT INTO buch (`Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Beschreibung`, `LagerplatzID`, `VerlagID`) VALUES ('$titel', '$isbn', '$seitenzahl', '$erschienen', '$description', '$lagerplatzid', '$verlagid')";
-        $sqlZuordnungen = "INSERT INTO buchgenrezuordnung ( `BuchID`, `GenreID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $genreid) AND INSERT INTO autorbuchzuordnung (`BuchID`, `AutorID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $autorid) ";
+        $sqlGenreZuordnungen = "INSERT INTO buchgenrezuordnung ( `BuchID`, `GenreID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $genreid)";
+        $sqlAutorZuordnung = " INSERT INTO autorbuchzuordnung (`BuchID`, `AutorID`) VALUES ((SELECT BuchID FROM buch WHERE ISBN = '$isbn'), $autorid)";
         try {
             mysqli_query($dbConnection, $sql);
-            mysqli_query($dbConnection, $sqlZuordnungen);
+            mysqli_query($dbConnection, $sqlGenreZuordnungen);
+            mysqli_query($dbConnection, $sqlAutorZuordnung);
         } catch (Throwable $th) {
             $_SESSION["errorMessage"] = $th->getMessage();
         }
