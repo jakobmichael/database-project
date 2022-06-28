@@ -76,3 +76,10 @@ textarea {
     resize: none;
     height:100px;
 }
+
+.registration-form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

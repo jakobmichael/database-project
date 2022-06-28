@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 30. Mai 2022 um 14:15
+-- Erstellungszeit: 21. Jun 2022 um 08:09
 -- Server-Version: 10.4.24-MariaDB
 -- PHP-Version: 8.1.6
 
@@ -34,6 +34,14 @@ CREATE TABLE `ausleihe` (
   `BuchID` int(11) NOT NULL,
   `KundenID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `ausleihe`
+--
+
+INSERT INTO `ausleihe` (`AusleiheID`, `Leihdatum`, `Rückgabedatum`, `BuchID`, `KundenID`) VALUES
+(71, '2022-06-10 00:00:00', '2022-06-29 00:00:00', 4, 2),
+(74, '2022-06-21 00:00:00', '2022-06-22 00:00:00', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -138,17 +146,18 @@ INSERT INTO `buch` (`BuchID`, `Titel`, `ISBN`, `Seitenzahl`, `Erschienen`, `Besc
 (3, 'Tafiti: Auch beste Freunde streiten mal', '978-3-551-03294-2', 24, '2022-07-27 11:47:45', 'Als eines Abends ein Stern vom Himmel fällt, sind das Erdmännchen und das Pinselohrschwein ganz aufgeregt. Pinsel entdeckt das Sternchen zuerst im hohen Savannengras, doch Tafiti ist schneller und schnappt sich den funkelnden Himmelskörper. Und schon entsteht ein großer Beste-Freunde-Streit. Ob die besten Freunde sich wohl wieder versöhnen?\r\n\r\nEine funkelnde Bilderbuchgeschichte über Freundschaft, Streit und Versöhnung. \r\n\r\nMaxi Pixi – die kleinen großen Bilderbücher im Softcover', 4, 4),
 (4, 'Professor Schwurbelstein und die Aluhüte des Grauens', '978-3-404-61737-1', 320, '2022-05-27 11:54:52', 'Verschwörungsfantasien sind spätestens seit der Erfindung der YouTube-Universität ein fester Bestandteil des Internets und mittlerweile besonders aus den sozialen Netzwerken nicht mehr wegzudenken. Anhänger diverser Verschwörungsmythen rotten sich in zahlreichen Online-Communities zusammen, um sich gegenseitig in ihrer Anschauungsweise zu bestätigen. Dabei reicht die Auswahl von dubiosen unwissenschaftlichen Märchengebilden, krassen politischen Aussagen an der Grenze der Strafbarkeit, über skurrile pseudowissenschaftliche „Enthüllungen“ bis hin zu schrägen esoterischen Weltanschauungen. Mit Witz und Scharfsinn erzählt der Autor von Verschwörungstheorien, die alles andere als harmlos zu bewerten sind und von Hirngespinsten, die weitrechende Konsequenzen haben können.', 1, 1),
 (5, 'Digitale Forensik. Die Zukunft der Verbrechensaufklärung', '978-3-431-05032-5', 240, '2022-04-29 11:56:49', 'Es sind scheinbar aussichtslose Fälle: Das Kind, das von einer Brücke in den Tod stürzte. Das Video, auf dem zu hören und zu sehen ist, wie im Leipziger Rockerkrieg ein Mann erschossen wird. Oder der Tatort eines schweren Raubes, an dem es zwar viele Spuren aber nur wenige Erkenntnisse gibt. Er rekonstruiert Tatorte in 3-D-Modellen, simuliert den Tathergang und schafft digitale Doubles von Opfern und Tätern. Immer dann, wenn Ermittler mit klassischen Methoden der Spurenauswertung nicht weiterkommen, wenden sie sich an Dirk Labudde. Anhand seiner spannendsten Fälle zeigt er, dass die Zukunft der digitalen Forensik längst begonnen hat, welche Chancen darin liegen, aber auch welche Risiken.', 1, 1),
-(6, 'Bin ich das?\r\nEine kurze Geschichte der Selbstauskunft', '978-3-10-397099-9', 192, '2021-11-24 12:08:51', 'Was steckt eigentlich hinter dem neuen Zwang, sich zu zeigen? Mit viel Humor, Selbstironie und klugen Beobachtungen erzählt Valentin Groebner – »eine(r) der coolsten Geschichtswissenschaftler momentan überhaupt« (litera.taz) – seine kurze Geschichte der Selbstauskunft.\r\nDenn ob im Bewerbungsgespräch oder per Instagram-Account, bei der Teambildung oder im Dating-Profil: Ohne Selbstauskunft geht heute nichts. Sie ist sowohl Lockstoff als auch Pflicht, steht für Reklame in eigener Sache und das Ver', 2, 3),
+(6, 'Bin ich das?\r\n', '978-3-10-397099-9', 192, '2021-11-24 12:08:51', 'Eine kurze Geschichte der Selbstauskunft\r\n\r\nWas steckt eigentlich hinter dem neuen Zwang, sich zu zeigen? Mit viel Humor, Selbstironie und klugen Beobachtungen erzählt Valentin Groebner – »eine(r) der coolsten Geschichtswissenschaftler momentan überhaupt« (litera.taz) – seine kurze Geschichte der Selbstauskunft.\r\nDenn ob im Bewerbungsgespräch oder per Instagram-Account, bei der Teambildung oder im Dating-Profil: Ohne Selbstauskunft geht heute nichts. Sie ist sowohl Lockstoff als auch Pflicht, steht für Reklame in eigener Sache und das Ver', 2, 3),
 (7, 'Macht und Wahn\r\nDer politische Krieg zwischen den USA und Russland seit 1945', '978-3-10-091072-1', 352, '2021-07-28 12:11:01', 'Wieder liefert Tim Weiner, der Geheimdienstexperte und Pulitzer-Preisträger, eine packende und eindringliche Darstellung politischer Machtspiele. In »Macht und Wahn« beleuchtet er die bilaterale Beziehung zwischen den Großmächten Russland und USA.\r\nGespickt mit Insiderberichten zeichnet Weiner fesselnd und anschaulich die Wurzeln dieses inzwischen über 75 Jahre andauernden Kampfes nach, den Amerika und Russland von 1945 bis 2020 mit Spionage, Diplomatie, Sabotage und Desinformation miteinander ausfechten. Weiner führt hinter verschlossene Türen und lässt die Protagonisten – Präsidenten, Politiker, Hintermänner – beider Seiten des Ost-West-Konflikts zu Wort kommen. Er beleuchtet die Machenschaften des KGB und der CIA und ihre Folgen für die Zeitgeschichte.\r\nHeute sehen die einst als Sieger aus dem Kalten Krieg hervorgegangenen USA ihre Demokratie in Gefahr. Denn Russland griff unter Wladimir Putin bereits zu einem Rückschlag an, der die USA gänzlich unvorbereitet traf: Mittels einer verdeckten Kampagne über Internet und Soziale Medien nahm die russische Regierung Einfluss auf die US-Präsidentschaftswahl 2016 und stellte so sicher, dass ihr Wunschkandidat, Donald Trump, das Weiße Haus bezog. Auch das dagegen eingeleitete Amtsenthebungsverfahren richtete nichts aus. Erneut verhärten sich die Fronten, der Ausgang dieses realen Politthrillers jedoch bleibt ungewiss.', 3, 3),
 (8, 'Notizzettel\r\nDenken und Schreiben im 21. Jahrhundert', '978-3-10-397330-3', 592, '2021-04-28 13:48:09', '»Ohne die Zettel, also allein durch Nachdenken, würde ich auf solche Ideen nicht kommen.«\r\nNiklas Luhmann\r\n\r\nDer Kommunikations- und Medienwissenschaftler Hektor Haarkötter hat die erste Kulturgeschichte des Notizzettels geschrieben und gleichzeitig eine Philosophie dieses unscheinbaren Mediums verfasst. Denn Notizzettel – Einkaufszettel, Spickzettel, Schmierzettel, Skizzen, Entwürfe, Karteikarten, Haftnotizen, Wandkritzeleien – sind der erste Haltepunkt vom Gedanken zum Geschriebenen: Ich denke, also notiere ich. Wer den Menschen beim Notieren zusieht, der kann ihnen beim Denken zusehen.\r\nErstmals erzählt Hektor Haarkötter die Kulturgeschichte des Notizzettels von den dunklen Anfängen bis in die unklare Zukunft und formuliert gleichzeitig dessen Theorie. Ob als Knochengerüst der Literatur, als Laborbuch der Naturwissenschaften oder als handgeschriebene Notiz im zeitgeistigen Notizbuch: Der Notizzettel ist Hard- und Software in einem, nicht nur ein Medium des Denkens, sondern vielleicht das Denken selbst.\r\n»Notizzettel« schließt eine Lücke, die bisher überhaupt noch niemand vermisst hat, und geht zwei so spektakulären wie spekulativen Hypothesen nach: Medien sind nicht zum Kommunizieren da, und Medien sind auch nicht zum Erinnern da! Mit auf die Reise durch die schillernde Welt der Notizzettel gehen Lionardo da Vinci, Ludwig Wittgenstein, Astrid Lindgren, Robert Walser, Hans Heberle, Georg Christoph Lichtenberg, Arno Schmidt, Herta Müller, Niklas Luhmann uvm. Die Wahrheit hinter »Zettel’s Traum« wird ebenso erzählt wie die Geschichte der Graffiti als »Notizen an der Wand«: Der erste »Sprayer« war übrigens ein Österreich zu Beginn des 19. Jahrhunderts, dessen Name heute weitgehend vergessen ist, obwohl er ihn manisch an Wände, Felsen und Mobiliar geschrieben hat.\r\nDie Entwicklung des Zettelkastens wird ebenso geschildert wie seine Bedeutung für den Büroalltag des 20. Jahrhunderts.\r\nVor allem geht »Notizzettel« aber der Frage nach, wie sich die Praxis des Notierens und des Schreibens im Übergang zum digitalen Zeitalter verändert hat und welche Auswirkungen das auf das Denken und die Kommunikation hat. Die Bedeutung des Notizzettels für die Kulturgeschichte des Denkens ist nach der Lektüre dieses Buches nicht mehr zu unterschätzen.', 3, 3),
-(9, 'Die Nachtigall singt nicht mehr\r\nDie Karl-Wieners-Reihe, Band 2', '978-3-596-00030-2', 448, '2022-03-30 13:50:38', 'München 1955. Zwischen Aufschwung, Fortschrittsglauben und neuen Feindbildern geraten drei Menschen ins Visier eines mächtigen Gegners – der zweite Band der 1950er-Jahre-Trilogie um den Journalisten Karl Wieners, seine Nichte Magda und den Privatdetektiv Ludwig Gruber\r\n\r\nIm Sommer 1955 arbeitet der Journalist Karl Wieners an einer Reportage über Emigranten in München. Seine Nichte Magda ist als Fotografin dabei und freundet sich mit der jungen Agota aus Litauen an, die Karl merkwürdig vorkommt, ohne dass er sagen könnte, weshalb. Und sie ist nicht die Einzige, die Karl und Magda Rätsel aufgibt.\r\n\r\nZur gleichen Zeit versucht der Privatdetektiv Ludwig Gruber den angeblichen Selbstmord eines Jugendlichen aufzuklären. Doch womit er es wirklich zu tun hat, ahnt er erst, als sich Verbindungen zu Karls und Magdas Recherche ergeben.\r\n\r\nNoch bevor sie alle die genauen Zusammenhänge begreifen, geht in einem Schwabinger Postamt eine Paketbombe hoch und tötet zwei Menschen ...', 6, 3),
+(9, 'Die Nachtigall singt nicht mehr\r\n', '978-3-596-00030-2', 448, '2022-03-30 13:50:38', 'Die Karl-Wieners-Reihe, Band 2\r\n\r\nMünchen 1955. Zwischen Aufschwung, Fortschrittsglauben und neuen Feindbildern geraten drei Menschen ins Visier eines mächtigen Gegners – der zweite Band der 1950er-Jahre-Trilogie um den Journalisten Karl Wieners, seine Nichte Magda und den Privatdetektiv Ludwig Gruber\r\n\r\nIm Sommer 1955 arbeitet der Journalist Karl Wieners an einer Reportage über Emigranten in München. Seine Nichte Magda ist als Fotografin dabei und freundet sich mit der jungen Agota aus Litauen an, die Karl merkwürdig vorkommt, ohne dass er sagen könnte, weshalb. Und sie ist nicht die Einzige, die Karl und Magda Rätsel aufgibt.\r\n\r\nZur gleichen Zeit versucht der Privatdetektiv Ludwig Gruber den angeblichen Selbstmord eines Jugendlichen aufzuklären. Doch womit er es wirklich zu tun hat, ahnt er erst, als sich Verbindungen zu Karls und Magdas Recherche ergeben.\r\n\r\nNoch bevor sie alle die genauen Zusammenhänge begreifen, geht in einem Schwabinger Postamt eine Paketbombe hoch und tötet zwei Menschen ...', 6, 3),
 (10, 'Love with Pride', '978-3-7335-5019-6', 384, '2021-08-25 13:52:53', 'Neue Stadt, neues Ich: Als die introvertierte Stella ihr Studium am College in Haydensburgh beginnt, ist sie froh, ihr altes Leben hinter sich zu lassen. Sie möchte nicht länger die unbeliebte, unsichtbare Außenseiterin sein. Dieses Mal wird alles anders, dieses Mal wird sie Freund*innen finden und ganz sie selbst sein können.\r\n\r\nDann trifft sie auf Ellie, die so ganz anders ist als sie selbst – impulsiv, immer fröhlich –, und ihr ganzes Leben steht plötzlich Kopf. Denn diese Freundschaft fühlt sich nach mehr an, so etwas hat Stella noch nie erlebt. Doch im Gegensatz zu Ellie kann sie mit ihren Gefühlen nicht offen umgehen, und das könnte den Anfang vom Ende der beiden bedeuten.\r\n\r\nDieser New-Adult-Roman ist perfekt geeignet für alle, die sich mehr Diversity und LGBTQIAP+ Repräsentation in Liebesromanen wünschen – und für alle, die bereits mit Micah und Julian (»Someone New«, Laura Kneidl) mitgefiebert haben!', 4, 3),
 (11, 'Wir orientieren uns in Europa\r\n', '978-3-464-65658-7', 32, NULL, 'Wir orientieren uns · Topographische Arbeitshefte', 5, 2),
 (12, 'Going CLIL - Prep Course\r\nMaterialien für den bilingualen Unterricht\r\nFachübergreifende Begleitmaterialien · 5./6. Schuljahr', '978-3-06-031051-7', 88, NULL, 'Bundesland\r\nBaden-Württemberg, Bayern, Berlin, Brandenburg, Bremen, Hamburg, Hessen, Mecklenburg-Vorpommern, Niedersachsen, Nordrhein-Westfalen, Rheinland-Pfalz, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein, Thüringen\r\nSchulform\r\nAbendschulen, Gesamtschulen, Grundschulen, Gymnasien, Realschulen, Seminar 2. und 3.Phase\r\nFach\r\nEnglisch, Erdkunde/Geographie, Geschichte, Gesellschaftswissenschaften\r\nKlasse\r\n5. Klasse, 6. Klasse', 5, 2),
 (13, 'Physik für die Forscherkiste · Sofort einsetzbare Freiarbeitsmaterialien zu zentralen Lehrplaninhalten\r\nEntdecken und Forschen in Naturwissenschaften - Sekundarstufe I\r\nKlassen 5-10\r\n', '978-3-589-16603-9', 68, NULL, 'Physik erforschen und entdecken\r\nMithilfe dieser Lernkarten setzen sich Schüler/-innen selbstständig und motiviert mit spannenden Fragen der Physik auseinander. Sie lernen nicht einfach, sondern forschen und entdecken. Gleichzeitig schulen sie ihre Problemlösungskompetenz und üben, den eigenen Lösungsweg zu dokumentieren. Das abwechslungsreiche Material behandelt die Themen\r\n\r\nMechanik,\r\nkomplexe Schaltungen,\r\nAuftrieb und Verdrängung sowie\r\nWärmelehre.\r\nMateriallisten erleichtern die Vorbereitung, knappe didaktisch-methodische Hinweise den passgenauen Einsatz.', 5, 2),
 (14, 'DIE LETZTE JAGD', '978-3-404-18778-2', 399, '2022-05-27 14:02:50', 'Wie ein Wild erlegt – so wurde Jürgen von Geyersberg, Erbe eines Millionenvermögens, auf den französischen Ländereien seiner Familie aufgefunden. Kommissar Pierre Niémans und seine junge Kollegin Ivana verlieren keine Zeit, sich in die süddeutsche Heimat der von Geyersbergs zu begeben. In einer mondänen Villa am Titisee scheint ihnen die schillernde Laura, die Schwester des Opfers, etwas zu verschweigen. Ein weiterer Mord in selber Manier geschieht, und Niémans und Ivana erkennen zu spät, dass im Schatten des mächtigen Schwarzwaldes abermals die Jagd begonnen hat – auf jeden, der dem abgründigen Familiengeheimnis der von Geyersbergs auf die Spur kommt …', 6, 1),
 (15, 'Tod auf Schloss Windsor', '978-3-404-18581-8', 512, '2022-05-27 00:04:56', 'Die Queen ist erschüttert. Während der Vorbereitung der \"Woche des Prunks\" kommt es zu einem Mord auf Schloss Windsor! Der liebenswürdige Kunstkurator Roger Pettibon wird tot aufgefunden. In seinem Rücken steckt ein Schwert, das normalerweise für die Investitur neuer Ritter des Hosenbandordens genutzt wird, um sein Knie ist ein royales Hosenband gebunden. Wer kann eine solch furchtbare Tat begangen haben? Die Polizei leitet umgehend Ermittlungen ein, aber auch der Spürsinn der Queen ist wieder geweckt. Und daher macht sie sich erneut gemeinsam mit Hausmädchen Jane Bee auf die Suche nach dem kaltblütigen Mörder ... ', 6, 1),
-(16, 'Agatha Raisin und das tödliche Kirchenfest', '978-3-404-18579-5', 253, '2022-05-27 14:06:31', 'Agatha Raisin kommt es mehr als gelegen, dass der attraktive Witwer George Selby sie bittet, ihn bei der Organisation eines Kirchenfestes zu unterstützen. Die Freude ist groß, als dieses ein großer Erfolg zu werden scheint und die Gäste von überallher herbeiströmen. Doch dann geschieht das Unfassbare: Einigen der Marmeladen, die auf dem Fest angeboten werden, wurde Gift beigemischt, und die fröhliche Feier wird zum Tatort, als gleich zwei Menschen daran sterben. Gemeinsam mit ihrer Assistentin Toni macht sich Agatha auf die Suche nach dem hinterhältigen Mörder und stößt dabei auf die dunklen Geheimnisse des Dorfes ...', 6, 1);
+(16, 'Agatha Raisin und das tödliche Kirchenfest', '978-3-404-18579-5', 253, '2022-05-27 14:06:31', 'Agatha Raisin kommt es mehr als gelegen, dass der attraktive Witwer George Selby sie bittet, ihn bei der Organisation eines Kirchenfestes zu unterstützen. Die Freude ist groß, als dieses ein großer Erfolg zu werden scheint und die Gäste von überallher herbeiströmen. Doch dann geschieht das Unfassbare: Einigen der Marmeladen, die auf dem Fest angeboten werden, wurde Gift beigemischt, und die fröhliche Feier wird zum Tatort, als gleich zwei Menschen daran sterben. Gemeinsam mit ihrer Assistentin Toni macht sich Agatha auf die Suche nach dem hinterhältigen Mörder und stößt dabei auf die dunklen Geheimnisse des Dorfes ...', 6, 1),
+(17, 'Test', '123', 3, '2022-01-01 00:00:00', 'Testestewt ', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -184,7 +193,10 @@ INSERT INTO `buchgenrezuordnung` (`BgzID`, `BuchID`, `GenreID`) VALUES
 (15, 16, 4),
 (16, 1, 2),
 (17, 2, 5),
-(18, 3, 5);
+(18, 3, 5),
+(19, 4, 1),
+(20, 7, 1),
+(21, 17, 3);
 
 -- --------------------------------------------------------
 
@@ -324,7 +336,7 @@ INSERT INTO `verlag` (`VerlagID`, `Name`, `Email`, `Telefonnummer`, `Straße`, `
 --
 ALTER TABLE `ausleihe`
   ADD PRIMARY KEY (`AusleiheID`),
-  ADD UNIQUE KEY `ausleihe_fk_buch` (`BuchID`),
+  ADD UNIQUE KEY `BuchID` (`BuchID`),
   ADD KEY `ausleihe_fk_kunde` (`KundenID`);
 
 --
@@ -368,7 +380,7 @@ ALTER TABLE `genre`
 --
 ALTER TABLE `kunde`
   ADD PRIMARY KEY (`KundenID`),
-  ADD UNIQUE KEY `PLZ` (`PLZ`);
+  ADD KEY `PLZ` (`PLZ`) USING BTREE;
 
 --
 -- Indizes für die Tabelle `lagerplatz`
@@ -397,7 +409,7 @@ ALTER TABLE `verlag`
 -- AUTO_INCREMENT für Tabelle `ausleihe`
 --
 ALTER TABLE `ausleihe`
-  MODIFY `AusleiheID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `AusleiheID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT für Tabelle `autor`
@@ -415,13 +427,13 @@ ALTER TABLE `autorbuchzuordnung`
 -- AUTO_INCREMENT für Tabelle `buch`
 --
 ALTER TABLE `buch`
-  MODIFY `BuchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `BuchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT für Tabelle `buchgenrezuordnung`
 --
 ALTER TABLE `buchgenrezuordnung`
-  MODIFY `BgzID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `BgzID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT für Tabelle `genre`

@@ -90,15 +90,19 @@ if (isset($_POST["fehlerZuruecksetzen"])) {
             <button type="submit" id="fehler-zuruecksetzen" name="fehlerZuruecksetzen" value="fehlerZuruecksetzen">Fehler zurücksetzen</button>
         </form>
     </div>
-    <div class="form-container">
-        <?php
-        include($rootPath . "/includes/addUser.php");
-        ?>
-    </div>
-    <div class="form-container">
-        <?php
-        include($rootPath . "/includes/addBook.php");
-        ?>
+
+    <div class="registration-form-container">
+
+        <div class="form-container">
+            <?php
+            include($rootPath . "/includes/addUser.php");
+            ?>
+        </div>
+        <div class="form-container">
+            <?php
+            include($rootPath . "/includes/addBook.php");
+            ?>
+        </div>
     </div>
 </body>
 

@@ -211,7 +211,7 @@ ALTER TABLE `genre`
 --
 ALTER TABLE `kunde`
   ADD PRIMARY KEY (`KundenID`),
-  ADD UNIQUE KEY `PLZ` (`PLZ`);
+  ADD KEY `PLZ` (`PLZ`);
 
 --
 -- Indizes für die Tabelle `lagerplatz`
